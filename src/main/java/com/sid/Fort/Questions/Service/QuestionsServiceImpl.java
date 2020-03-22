@@ -6,10 +6,13 @@ import com.sid.Fort.Questions.Dao.Questions;
 import com.sid.Fort.Questions.Dao.QuestionsRepository;
 import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenarios;
 import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenariosRepository;
+import com.sid.Fort.ResponsesGroups.Dao.ResponsesGroups;
+import com.sid.Fort.ResponsesGroups.Dao.ResponsesGroupsRepository;
 import com.sid.Fort.config.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -25,6 +28,8 @@ public class QuestionsServiceImpl implements IQuestionsService {
 
     @Autowired
     private QuestionsResponsesScenariosRepository questionsResponsesScenariosRepository;
+    @Autowired
+        private ResponsesGroupsRepository responsesGroupsRepository;
 
     @Override
     public Questions getQuestionsById(Long id) {
@@ -56,6 +61,12 @@ public class QuestionsServiceImpl implements IQuestionsService {
         return questions;
     }
 
+    @Override
+    public List<Questions> getQuestionsBySecteurIdAndTypeINTERMEDIATE(Long id_Secteur, Enum tyoe, Long scenario_id) {
+
+        return questionsRepository.findQuestionsBySecteurIdAndType(id_Secteur, tyoe);
+    }
+
 
     @Override
     public List<Questions> getAllQuestions() {
@@ -68,10 +79,13 @@ public class QuestionsServiceImpl implements IQuestionsService {
     }
 
     @Override
-    public Questions AddQuestionsid_Secteur(Questions Questions, Long id_Secteur) {
-        List<DnfbpsSectors> dnfbpsSectors = (List<DnfbpsSectors>) dnfbpsSectorsRepository.findById(id_Secteur).get();
-        Questions.setSecteur(dnfbpsSectors);
+    public Questions AddQuestionsid_Secteur(Questions Questions, Long id_Secteur,Long id_responsesGroups) {
 
+        List<DnfbpsSectors> dnfbpsSectors = dnfbpsSectorsRepository.findAllById(Collections.singleton(id_Secteur));
+        ResponsesGroups responsesGroups=responsesGroupsRepository.getOne(id_responsesGroups);
+
+        Questions.setSecteur(dnfbpsSectors);
+        Questions.setResponsesGroups(responsesGroups);
         return questionsRepository.save(Questions);
     }
 

@@ -38,7 +38,7 @@ public class Questions implements Serializable {
     private ResponsesGroups responsesGroups;
 
 
-      @ManyToOne(fetch = FetchType.LAZY,optional = false)
+      @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
        private QuestionsWeights questionsWeights;
 
     public Questions() {

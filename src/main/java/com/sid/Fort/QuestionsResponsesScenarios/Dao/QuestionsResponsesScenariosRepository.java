@@ -10,4 +10,7 @@ public interface QuestionsResponsesScenariosRepository extends JpaRepository<Que
     public QuestionsResponsesScenarios findByQuestionsIdAndScenariosId(Long id_Question,Long Id_Scenarios);
     public QuestionsResponsesScenarios findByQuestionsIdAndScenariosIdAndProductsId(Long id_Question,Long Id_Scenarios,Long id_Products);
 
+    public QuestionsResponsesScenarios findByQuestionsId(Long id_Question);
+    public void deleteByScenariosId(Long id_senaros);
+
 }

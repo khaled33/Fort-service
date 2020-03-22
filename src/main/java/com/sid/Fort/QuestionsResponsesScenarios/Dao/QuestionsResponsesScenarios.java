@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 public class QuestionsResponsesScenarios implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double value;
     private Double best_value;
