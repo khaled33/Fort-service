@@ -101,7 +101,7 @@ public class QuestionsResponsesScenariosServiceImpl implements QuestionsResponse
         Scenarios scenarios = scenariosRepository.findById(scenario_id).get();
         QuestionsResponsesScenarios.setScenarios(scenarios);
 
-        if (QuestionsResponsesScenarios.getResponses_sel() != null || QuestionsResponsesScenarios.getResponses_sel()!=-1) {
+        if (QuestionsResponsesScenarios.getResponses_sel() != null && QuestionsResponsesScenarios.getResponses_sel()!=-1) {
             Responses responses = responsesRepository.getOne(QuestionsResponsesScenarios.getResponses_sel());
 
             QuestionsResponsesScenarios.setValue(responses.getValue());
@@ -116,7 +116,7 @@ public class QuestionsResponsesScenariosServiceImpl implements QuestionsResponse
             QuestionsResponsesScenarios.setId(OldquestionsResponsesScenarios.getId());
         }
 
-//          vulMapService.calcule( scenario_id);
+        vulMapService.calcule( scenario_id);
 
         return questionsResponsesScenariosRepository.save(QuestionsResponsesScenarios);
     }

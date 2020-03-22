@@ -39,7 +39,6 @@ public class QuestionsResponsesScenarios implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name ="scenario_id")
-    @JsonBackReference
     private Scenarios scenarios;
 
     public QuestionsResponsesScenarios() {

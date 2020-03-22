@@ -1,5 +1,6 @@
 package com.sid.Fort.Questions.Service;
 
+import com.sid.Fort.Calcules.VulMap.VulMapService;
 import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectors;
 import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectorsRepository;
 import com.sid.Fort.Questions.Dao.Questions;
@@ -70,6 +71,7 @@ public class QuestionsServiceImpl implements IQuestionsService {
 
     @Override
     public List<Questions> getAllQuestions() {
+
         return questionsRepository.findAll();
     }
 

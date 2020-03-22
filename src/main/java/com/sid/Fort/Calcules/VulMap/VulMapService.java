@@ -26,21 +26,28 @@ public class VulMapService {
         QuestionsResponsesScenarios.sort((l, r) -> l.getQuestions().getOrdre().compareTo(r.getQuestions().getOrdre()));
 
         for (QuestionsResponsesScenarios qrs : QuestionsResponsesScenarios) {
+
             System.out.println(qrs.getQuestions().getText() + " text");
             System.out.println(qrs.getQuestions().getOrdre() + " order");
             Long idqrs = qrs.getId();
+            Long idqSenario = qrs.getScenarios().getId();
             double somVal = 0;
             double somWeights = 0;
             double res;
             double min = 0;
+            Double valeus;
             List<Double> MinPrerequisite = new ArrayList<>();
             Double testPrerequisite = null;
-
-            for (Questions qs : qrs.getQuestions().getQuestionsWeights().getParent_id()) {
-//                if (questionsResponsesScenariosRepository.findByQuestionsId(qs.getId()).getValue()!=null){
 //
-//                }
-                Double valeus = questionsResponsesScenariosRepository.findByQuestionsId(qs.getId()).getValue();
+           for (Questions qs : qrs.getQuestions().getQuestionsWeights().getParent_id()) {
+
+              // Double valeus = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(qs.getId(),idqSenario).getValue();
+              QuestionsResponsesScenarios  questionsResponsesScenarios = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(qs.getId(),idqSenario);
+
+        if (questionsResponsesScenarios!=null){
+             valeus =questionsResponsesScenarios.getValue();
+
+
                 Integer questionsWeights = qs.getQuestionsWeights().getWeight();
                 Boolean Prerequisite = qs.getQuestionsWeights().getPrerequisite();
 
@@ -53,6 +60,11 @@ public class VulMapService {
                 if (qrs.getQuestions().getOrdre() == 6) {
                     questionsWeights = 1;
                 }
+                if (qrs.getQuestions().getOrdre() == 4) {
+                    if (qs.getText().equals("Qualité de la supervision de la LBC valus"))
+                    questionsWeights = 2;
+                    Prerequisite=true;
+                }
                 somVal += valeus * questionsWeights;
                 somWeights += questionsWeights;
 
@@ -63,11 +75,11 @@ public class VulMapService {
                     testPrerequisite = Double.valueOf(99);
 
                 MinPrerequisite.add(testPrerequisite);
-                min = MinPrerequisite.stream().min(Comparator.naturalOrder()).get();
 
+            min = MinPrerequisite.stream().min(Comparator.naturalOrder()).get();
 
-            }
-
+        }
+           }
             res = somVal / somWeights;
 
 
@@ -77,6 +89,7 @@ public class VulMapService {
 
             questionsResponsesScenariosRepository.save(qrs);
             System.out.println("RES" + Math.min(ArrondirRest, ArrondirMin));
+            System.out.println("min" +  MinPrerequisite.toString());
             System.out.println("**********");
 
 
