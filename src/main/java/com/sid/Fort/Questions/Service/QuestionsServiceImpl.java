@@ -1,6 +1,5 @@
 package com.sid.Fort.Questions.Service;
 
-import com.sid.Fort.Calcules.VulMap.VulMapService;
 import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectors;
 import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectorsRepository;
 import com.sid.Fort.Questions.Dao.Questions;
@@ -16,8 +15,6 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class QuestionsServiceImpl implements IQuestionsService {

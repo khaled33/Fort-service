@@ -1,7 +1,5 @@
 package com.sid.Fort.Questions.Controller;
 
-import com.sid.Fort.Calcules.VulMap.VulMapService;
-import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectors;
 import com.sid.Fort.Questions.Dao.Questions;
 import com.sid.Fort.Questions.Service.IQuestionsService;
 import org.springframework.beans.factory.annotation.Autowired;

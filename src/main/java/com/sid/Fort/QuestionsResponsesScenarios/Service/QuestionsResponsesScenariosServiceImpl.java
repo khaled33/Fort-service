@@ -1,11 +1,8 @@
 package com.sid.Fort.QuestionsResponsesScenarios.Service;
 
-import com.sid.Fort.Calcules.VulMap.VulMapService;
-import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectors;
-import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectorsRepository;
+import com.sid.Fort.Calcules.VulMap.Service.VulMapService;
 import com.sid.Fort.Products.Dao.Products;
 import com.sid.Fort.Products.Dao.ProductsRepository;
-import com.sid.Fort.Questions.Dao.Questions;
 import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenarios;
 import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenariosRepository;
 import com.sid.Fort.Responses.Dao.Responses;

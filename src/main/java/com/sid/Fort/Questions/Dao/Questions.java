@@ -27,7 +27,7 @@ public class Questions implements Serializable {
     private Type type;
     @Transient
     private Long respSelected;
-    private Integer Ordre;
+    private Integer indx;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<DnfbpsSectors> secteur;
@@ -105,11 +105,11 @@ public class Questions implements Serializable {
         this.respSelected = respSelected;
     }
 
-    public Integer getOrdre() {
-        return Ordre;
+    public Integer getIndx() {
+        return indx;
     }
 
-    public void setOrdre(Integer ordre) {
-        Ordre = ordre;
+    public void setIndx(Integer indx) {
+        this.indx = indx;
     }
 }

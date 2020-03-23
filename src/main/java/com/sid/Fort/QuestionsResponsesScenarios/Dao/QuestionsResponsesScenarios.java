@@ -26,7 +26,7 @@ public class QuestionsResponsesScenarios implements Serializable {
 
     @ManyToOne (fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     @JoinColumn(name ="question_id" )
-    @javax.persistence.OrderBy(value = "Ordre desc ")
+    @javax.persistence.OrderBy(value = "indx desc ")
     private Questions questions;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
