@@ -1,11 +1,13 @@
 package com.sid.Fort.Calcules.VulMap.Entity;
 
+import java.util.List;
 import java.util.Map;
 
-public abstract class VulMap {
+public class VulMap {
     private String id;
     private String name;
     private Map<String,String> data;
+    private List<VulMap> Children;
 
     public VulMap() {
     }
@@ -40,5 +42,13 @@ public abstract class VulMap {
 
     public void setData(Map<String, String> data) {
         this.data = data;
+    }
+
+    public List<VulMap> getChildren() {
+        return Children;
+    }
+
+    public void setChildren(List<VulMap> children) {
+        Children = children;
     }
 }

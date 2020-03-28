@@ -1,8 +1,7 @@
 package com.sid.Fort.Calcules.VulMap.Service;
 
-import com.sid.Fort.Calcules.VulMap.Entity.VulMaPChldrenl;
+
 import com.sid.Fort.Calcules.VulMap.Entity.VulMap;
-import com.sid.Fort.Calcules.VulMap.Entity.VulMap_no_children;
 import com.sid.Fort.Questions.Dao.Questions;
 import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenarios;
 import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenariosRepository;
@@ -111,7 +110,7 @@ public class VulMapService {
     public VulMap getVueVulMap(Long id_Scenario) {
         QuestionsResponsesScenarios Qrs = questionsResponsesScenariosRepository.findQuestionsResponsesScenariosByScenariosIdAndQuestionsTypeAndQuestionsIndx(id_Scenario, Questions.Type.INTERMEDIATE_VARIABLE_TYPE, 7);
 
-        VulMaPChldrenl map = new VulMaPChldrenl();
+        VulMap map = new VulMap();
         Map<String, String> data = new HashMap<>();
         List<VulMap> Children_Niveau_1 = new ArrayList<>();
 
@@ -124,7 +123,7 @@ public class VulMapService {
 
         for (Questions QsParant_Niveau_1 : Qrs.getQuestions().getQuestionsWeights().getParent_id()) {
 
-            VulMaPChldrenl MapParant_Niveau_1 = new VulMaPChldrenl();
+            VulMap MapParant_Niveau_1 = new VulMap();
 
             Map<String, String> data1 = new HashMap<>();
             List<VulMap> Children_Niveau_2 = new ArrayList<>();
@@ -140,7 +139,7 @@ public class VulMapService {
 
             for (Questions QsParant_Niveau_2 : QsParant_Niveau_1.getQuestionsWeights().getParent_id()) {
 
-                VulMaPChldrenl MapParant_Niveau_2 = new VulMaPChldrenl<>();
+                VulMap MapParant_Niveau_2 = new VulMap();
                 Map<String, String> data2 = new HashMap<>();
                 List<VulMap> Children_Niveau_3 = new ArrayList<>();
 
@@ -155,7 +154,7 @@ public class VulMapService {
 //
                 for (Questions QsParant_Niveau_3 : QsParant_Niveau_2.getQuestionsWeights().getParent_id()) {
 
-                    VulMaPChldrenl MapParant_Niveau_3 = new VulMaPChldrenl<>();
+                    VulMap MapParant_Niveau_3 = new VulMap();
                     Map<String, String> data3 = new HashMap<>();
 
                     List<VulMap> Children_Niveau_4 = new ArrayList<>();
@@ -170,7 +169,7 @@ public class VulMapService {
 
                     for (Questions QsParant_Niveau_4 : QsParant_Niveau_3.getQuestionsWeights().getParent_id()) {
 
-                        VulMap MapParant_Niveau_4 = new VulMaPChldrenl<>();
+                        VulMap MapParant_Niveau_4 = new VulMap();
                         Map<String, String> data4 = new HashMap<>();
 
 //
