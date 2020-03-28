@@ -1,4 +1,4 @@
-FROM openjdk:11-jre-slim
+FROM openjdk:8
 VOLUME /tmp
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
