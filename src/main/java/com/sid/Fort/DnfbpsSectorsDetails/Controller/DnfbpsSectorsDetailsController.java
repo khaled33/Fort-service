@@ -1,6 +1,6 @@
 package com.sid.Fort.DnfbpsSectorsDetails.Controller;
 
-import com.sid.Fort.DnfbpsSectorsDetails.Dao.DnfbpsSectorsDetails;
+import com.sid.Fort.DnfbpsSectorsDetails.Entity.DnfbpsSectorsDetails;
 import com.sid.Fort.DnfbpsSectorsDetails.Service.IDnfbpsSectorsDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

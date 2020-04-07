@@ -1,6 +1,6 @@
 package com.sid.Fort.DnfbpsSectors.Service;
 
-import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectors;
+import com.sid.Fort.DnfbpsSectors.Entity.DnfbpsSectors;
 import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectorsRepository;
 import com.sid.Fort.config.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

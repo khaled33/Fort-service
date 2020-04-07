@@ -1,6 +1,6 @@
 package com.sid.Fort.FormQuestionResponses.Controller;
 
-import com.sid.Fort.FormQuestionResponses.Dao.FormQuestionResponses;
+import com.sid.Fort.FormQuestionResponses.Entity.FormQuestionResponses;
 import com.sid.Fort.FormQuestionResponses.Service.IFormQuestionResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

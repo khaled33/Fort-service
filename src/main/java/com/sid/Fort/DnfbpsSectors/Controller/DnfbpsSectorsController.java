@@ -1,6 +1,6 @@
 package com.sid.Fort.DnfbpsSectors.Controller;
 
-import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectors;
+import com.sid.Fort.DnfbpsSectors.Entity.DnfbpsSectors;
 import com.sid.Fort.DnfbpsSectors.Service.DnfbpsSectorsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

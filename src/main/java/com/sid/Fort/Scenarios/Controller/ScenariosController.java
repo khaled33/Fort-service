@@ -1,6 +1,6 @@
 package com.sid.Fort.Scenarios.Controller;
 
-import com.sid.Fort.Scenarios.Dao.Scenarios;
+import com.sid.Fort.Scenarios.Entity.Scenarios;
 import com.sid.Fort.Scenarios.Service.IScenariosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

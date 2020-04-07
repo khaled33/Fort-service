@@ -1,7 +1,6 @@
 package com.sid.Fort.Products.Controller;
 
-import com.sid.Fort.Operations.Dao.Operations;
-import com.sid.Fort.Products.Dao.Products;
+import com.sid.Fort.Products.Entity.Products;
 import com.sid.Fort.Products.Service.IProducts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

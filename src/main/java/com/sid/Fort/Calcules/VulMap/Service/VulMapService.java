@@ -2,16 +2,13 @@ package com.sid.Fort.Calcules.VulMap.Service;
 
 
 import com.sid.Fort.Calcules.VulMap.Entity.VulMap;
-import com.sid.Fort.Questions.Dao.Questions;
-import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenarios;
-import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenariosRepository;
-import com.sid.Fort.QuestionsResponsesScenarios.Service.QuestionsResponsesScenariosServiceImpl;
-import com.sid.Fort.QuestionsWeights.Dao.QuestionsWeights;
+import com.sid.Fort.QuestionsEntryPage.Entity.Questions;
+import com.sid.Fort.QuestionsResponsesScenariosEntryPage.Entity.QuestionsResponsesScenariosEntryPage;
+import com.sid.Fort.QuestionsResponsesScenariosEntryPage.Dao.QuestionsResponsesScenariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 @Service
 public class VulMapService {
@@ -21,13 +18,13 @@ public class VulMapService {
 
     public void calcule(Long id_Scenario) {
 
-        List<QuestionsResponsesScenarios>
+        List<QuestionsResponsesScenariosEntryPage>
                 QuestionsResponsesScenarios =
                 questionsResponsesScenariosRepository.findAllQuestionsResponsesScenariosByScenariosIdAndQuestionsType(id_Scenario, Questions.Type.INTERMEDIATE_VARIABLE_TYPE);
 //            trier les qss selon ordre
         QuestionsResponsesScenarios.sort((l, r) -> l.getQuestions().getIndx().compareTo(r.getQuestions().getIndx()));
 
-        for (QuestionsResponsesScenarios qrs : QuestionsResponsesScenarios) {
+        for (QuestionsResponsesScenariosEntryPage qrs : QuestionsResponsesScenarios) {
 
             System.out.println(qrs.getQuestions().getText() + " text");
             System.out.println(qrs.getQuestions().getIndx() + " order");
@@ -43,7 +40,7 @@ public class VulMapService {
             for (Questions qs : qrs.getQuestions().getQuestionsWeights().getParent_id()) {
 
                 // Double valeus = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(qs.getId(),idqSenario).getValue();
-                QuestionsResponsesScenarios questionsResponsesScenarios = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(qs.getId(), idqSenario);
+                QuestionsResponsesScenariosEntryPage questionsResponsesScenarios = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(qs.getId(), idqSenario);
 
                 if (questionsResponsesScenarios != null) {
                     valeus = questionsResponsesScenarios.getValue();
@@ -108,7 +105,7 @@ public class VulMapService {
     }
 
     public VulMap getVueVulMap(Long id_Scenario) {
-        QuestionsResponsesScenarios Qrs = questionsResponsesScenariosRepository.findQuestionsResponsesScenariosByScenariosIdAndQuestionsTypeAndQuestionsIndx(id_Scenario, Questions.Type.INTERMEDIATE_VARIABLE_TYPE, 7);
+        QuestionsResponsesScenariosEntryPage Qrs = questionsResponsesScenariosRepository.findQuestionsResponsesScenariosByScenariosIdAndQuestionsTypeAndQuestionsIndx(id_Scenario, Questions.Type.INTERMEDIATE_VARIABLE_TYPE, 7);
 
         VulMap map = new VulMap();
         Map<String, String> data = new HashMap<>();
@@ -129,7 +126,7 @@ public class VulMapService {
             List<VulMap> Children_Niveau_2 = new ArrayList<>();
 
             MapParant_Niveau_1.setId(map.getId() + "" + QsParant_Niveau_1.getId());
-            QuestionsResponsesScenarios questionsResponsesScenarios = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(QsParant_Niveau_1.getId(), id_Scenario);
+            QuestionsResponsesScenariosEntryPage questionsResponsesScenarios = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(QsParant_Niveau_1.getId(), id_Scenario);
 
             MapParant_Niveau_1.setName(questionsResponsesScenarios.getValue() + ":" + QsParant_Niveau_1.getText());
 
@@ -144,7 +141,7 @@ public class VulMapService {
                 List<VulMap> Children_Niveau_3 = new ArrayList<>();
 
                 MapParant_Niveau_2.setId(QsParant_Niveau_1.getId() + "" + QsParant_Niveau_2.getId());
-                QuestionsResponsesScenarios questionsResponsesScenarios1 = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(QsParant_Niveau_2.getId(), id_Scenario);
+                QuestionsResponsesScenariosEntryPage questionsResponsesScenarios1 = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(QsParant_Niveau_2.getId(), id_Scenario);
 //
                 MapParant_Niveau_2.setName(questionsResponsesScenarios1.getValue() + ":" + QsParant_Niveau_2.getText());
 //
@@ -160,7 +157,7 @@ public class VulMapService {
                     List<VulMap> Children_Niveau_4 = new ArrayList<>();
 //
                     MapParant_Niveau_3.setId(QsParant_Niveau_2.getId() + "" + QsParant_Niveau_3);
-                    QuestionsResponsesScenarios questionsResponsesScenarios2 = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(QsParant_Niveau_3.getId(), id_Scenario);
+                    QuestionsResponsesScenariosEntryPage questionsResponsesScenarios2 = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(QsParant_Niveau_3.getId(), id_Scenario);
 ////
                     MapParant_Niveau_3.setName(questionsResponsesScenarios2.getValue() + ":" + QsParant_Niveau_3.getText());
 ////
@@ -174,7 +171,7 @@ public class VulMapService {
 
 //
                         MapParant_Niveau_4.setId(QsParant_Niveau_4.getId().toString());
-                        QuestionsResponsesScenarios questionsResponsesScenarios3 = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(QsParant_Niveau_4.getId(), id_Scenario);
+                        QuestionsResponsesScenariosEntryPage questionsResponsesScenarios3 = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(QsParant_Niveau_4.getId(), id_Scenario);
 ////
                         MapParant_Niveau_4.setName(questionsResponsesScenarios3.getValue() + ":" + QsParant_Niveau_4.getText());
 ////

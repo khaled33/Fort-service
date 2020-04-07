@@ -1,6 +1,6 @@
 package com.sid.Fort.Countries.Service;
 
-import com.sid.Fort.Countries.Dao.Countrie;
+import com.sid.Fort.Countries.Entity.Countrie;
 import com.sid.Fort.Countries.Dao.CountrieRepository;
 import com.sid.Fort.config.URL_Image.URL_image;
 import com.sid.Fort.config.error.NotFoundException;
@@ -11,9 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.NoSuchElementException;
 

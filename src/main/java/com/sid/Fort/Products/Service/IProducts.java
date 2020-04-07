@@ -1,7 +1,7 @@
 package com.sid.Fort.Products.Service;
 
 
-import com.sid.Fort.Products.Dao.Products;
+import com.sid.Fort.Products.Entity.Products;
 
 import java.util.List;
 

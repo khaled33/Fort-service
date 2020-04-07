@@ -1,7 +1,6 @@
 package com.sid.Fort.DnfbpsSectors.Service;
 
-import com.sid.Fort.CountriesDetails.Dao.CountrieDetails;
-import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectors;
+import com.sid.Fort.DnfbpsSectors.Entity.DnfbpsSectors;
 
 import java.util.List;
 

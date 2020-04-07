@@ -1,6 +1,6 @@
 package com.sid.Fort.QuestionsWeights.Service;
 
-import com.sid.Fort.QuestionsWeights.Dao.QuestionsWeights;
+import com.sid.Fort.QuestionsWeights.Entity.QuestionsWeights;
 
 import java.util.List;
 

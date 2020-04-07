@@ -1,8 +1,7 @@
 package com.sid.Fort.Products.Service;
 
-import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectors;
 import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectorsRepository;
-import com.sid.Fort.Products.Dao.Products;
+import com.sid.Fort.Products.Entity.Products;
 import com.sid.Fort.Products.Dao.ProductsRepository;
 import com.sid.Fort.config.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

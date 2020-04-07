@@ -1,7 +1,6 @@
 package com.sid.Fort.Operations.Service;
 
-import com.sid.Fort.FormQuestionResponses.Dao.FormQuestionResponses;
-import com.sid.Fort.Operations.Dao.Operations;
+import com.sid.Fort.Operations.Entity.Operations;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.sid.Fort.DnfbpsSectorsDetails.Service;
 
-import com.sid.Fort.DnfbpsSectorsDetails.Dao.DnfbpsSectorsDetails;
+import com.sid.Fort.DnfbpsSectorsDetails.Entity.DnfbpsSectorsDetails;
 import com.sid.Fort.DnfbpsSectorsDetails.Dao.DnfbpsSectorsDetailsRepository;
 import com.sid.Fort.Operations.Dao.OperationsRepository;
 import com.sid.Fort.config.error.NotFoundException;

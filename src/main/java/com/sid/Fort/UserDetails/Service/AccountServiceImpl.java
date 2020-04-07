@@ -1,13 +1,12 @@
 package com.sid.Fort.UserDetails.Service;
 
-import com.sid.Fort.UserDetails.Dao.AppUser;
+import com.sid.Fort.UserDetails.Entity.AppUser;
 import com.sid.Fort.UserDetails.Dao.AppUsersRepository;
-import com.sid.Fort.UserDetails.Dao.Role;
+import com.sid.Fort.UserDetails.Entity.Role;
 import com.sid.Fort.UserDetails.Dao.RolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 

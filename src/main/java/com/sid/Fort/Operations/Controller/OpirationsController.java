@@ -1,6 +1,6 @@
 package com.sid.Fort.Operations.Controller;
 
-import com.sid.Fort.Operations.Dao.Operations;
+import com.sid.Fort.Operations.Entity.Operations;
 import com.sid.Fort.Operations.Service.IOperatiosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

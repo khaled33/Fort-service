@@ -1,8 +1,8 @@
 package com.sid.Fort.UserDetails.Service;
 
 
-import com.sid.Fort.UserDetails.Dao.AppUser;
-import com.sid.Fort.UserDetails.Dao.Role;
+import com.sid.Fort.UserDetails.Entity.AppUser;
+import com.sid.Fort.UserDetails.Entity.Role;
 
 public interface AccountService {
     public AppUser saveUser(AppUser users);

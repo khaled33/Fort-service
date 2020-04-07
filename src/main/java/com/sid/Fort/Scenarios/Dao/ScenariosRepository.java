@@ -1,5 +1,6 @@
 package com.sid.Fort.Scenarios.Dao;
 
+import com.sid.Fort.Scenarios.Entity.Scenarios;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

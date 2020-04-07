@@ -1,7 +1,6 @@
 package com.sid.Fort.Countries.Service;
 
-import com.sid.Fort.Countries.Dao.Countrie;
-import org.springframework.stereotype.Service;
+import com.sid.Fort.Countries.Entity.Countrie;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

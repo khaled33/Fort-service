@@ -1,12 +1,12 @@
 package com.sid.Fort.Scenarios.Service;
 
-import com.sid.Fort.Operations.Dao.Operations;
+import com.sid.Fort.Operations.Entity.Operations;
 import com.sid.Fort.Operations.Dao.OperationsRepository;
-import com.sid.Fort.Questions.Dao.Questions;
-import com.sid.Fort.Questions.Service.QuestionsServiceImpl;
-import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenarios;
-import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenariosRepository;
-import com.sid.Fort.Scenarios.Dao.Scenarios;
+import com.sid.Fort.QuestionsEntryPage.Entity.Questions;
+import com.sid.Fort.QuestionsEntryPage.Service.QuestionsServiceImpl;
+import com.sid.Fort.QuestionsResponsesScenariosEntryPage.Entity.QuestionsResponsesScenariosEntryPage;
+import com.sid.Fort.QuestionsResponsesScenariosEntryPage.Dao.QuestionsResponsesScenariosRepository;
+import com.sid.Fort.Scenarios.Entity.Scenarios;
 import com.sid.Fort.Scenarios.Dao.ScenariosRepository;
 import com.sid.Fort.config.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,9 +65,8 @@ public class ScenariosServiceImpl implements IScenariosService {
 
         List<Questions> questions = questionsService.getQuestionsBySecteurIdAndTypeINTERMEDIATE(operations.getDnfbpsSectors().getId(), Questions.Type.INTERMEDIATE_VARIABLE_TYPE, scenarios.getId());
         for (Questions qs:questions) {
-            QuestionsResponsesScenarios questionsResponsesScenarios=new QuestionsResponsesScenarios();
+            QuestionsResponsesScenariosEntryPage questionsResponsesScenarios=new QuestionsResponsesScenariosEntryPage();
             questionsResponsesScenarios.setValue(0);
-            questionsResponsesScenarios.setBest_value(7d);
             questionsResponsesScenarios.setScenarios(scenarios);
             questionsResponsesScenarios.setQuestions(qs);
             questionsResponsesScenariosRepository.save(questionsResponsesScenarios);

@@ -1,7 +1,6 @@
 package com.sid.Fort.CountriesDetails.Service;
 
-import com.sid.Fort.Countries.Dao.Countrie;
-import com.sid.Fort.CountriesDetails.Dao.CountrieDetails;
+import com.sid.Fort.CountriesDetails.Entity.CountrieDetails;
 
 import java.util.List;
 

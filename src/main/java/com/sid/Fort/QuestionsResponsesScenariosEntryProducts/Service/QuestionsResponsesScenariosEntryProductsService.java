@@ -1,0 +1,15 @@
+package com.sid.Fort.QuestionsResponsesScenariosEntryProducts.Service;
+
+import com.sid.Fort.QuestionsResponsesScenariosEntryPage.Entity.QuestionsResponsesScenariosEntryPage;
+import com.sid.Fort.QuestionsResponsesScenariosEntryProducts.Entity.QuestionsResponsesScenariosEntryProducts;
+
+import java.util.List;
+
+public interface QuestionsResponsesScenariosEntryProductsService {
+    public QuestionsResponsesScenariosEntryProducts getQuestionsResponsesScenariosEntryProductsById(Long id);
+    public List<QuestionsResponsesScenariosEntryProducts> getAllQuestionsResponsesScenariosEntryProducts();
+    public List<QuestionsResponsesScenariosEntryProducts> getAllQuestionsResponsesScenariosEntryProductsByIdScenarios(Long id);
+    public QuestionsResponsesScenariosEntryProducts AddQuestionsResponsesScenariosEntryProducts(QuestionsResponsesScenariosEntryProducts QuestionsResponsesScenariosEntryProducts, Long scenario_id, Long product_id);
+    public QuestionsResponsesScenariosEntryProducts UpdateQuestionsResponsesScenariosEntryProducts(QuestionsResponsesScenariosEntryProducts QuestionsResponsesScenariosEntryProducts, Long id);
+    public void DeleteQuestionsResponsesScenariosEntryProducts(Long id);
+}

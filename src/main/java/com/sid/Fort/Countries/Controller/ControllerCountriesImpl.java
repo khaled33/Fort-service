@@ -1,6 +1,6 @@
 package com.sid.Fort.Countries.Controller;
 
-import com.sid.Fort.Countries.Dao.Countrie;
+import com.sid.Fort.Countries.Entity.Countrie;
 import com.sid.Fort.Countries.Service.ICountrieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController

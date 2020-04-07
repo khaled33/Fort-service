@@ -1,7 +1,7 @@
 package com.sid.Fort.config.Securite;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sid.Fort.UserDetails.Dao.AppUser;
+import com.sid.Fort.UserDetails.Entity.AppUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;

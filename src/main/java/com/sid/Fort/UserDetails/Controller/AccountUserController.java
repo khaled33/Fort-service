@@ -1,7 +1,6 @@
 package com.sid.Fort.UserDetails.Controller;
 
-import com.sid.Fort.UserDetails.Dao.AppUser;
-import com.sid.Fort.UserDetails.Dao.Role;
+import com.sid.Fort.UserDetails.Entity.AppUser;
 import com.sid.Fort.UserDetails.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

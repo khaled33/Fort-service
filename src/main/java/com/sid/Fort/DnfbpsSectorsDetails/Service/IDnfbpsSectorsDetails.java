@@ -2,7 +2,7 @@ package com.sid.Fort.DnfbpsSectorsDetails.Service;
 
 
 
-import com.sid.Fort.DnfbpsSectorsDetails.Dao.DnfbpsSectorsDetails;
+import com.sid.Fort.DnfbpsSectorsDetails.Entity.DnfbpsSectorsDetails;
 
 import java.util.List;
 

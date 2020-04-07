@@ -1,6 +1,6 @@
 package com.sid.Fort.QuestionsWeights.Controller;
 
-import com.sid.Fort.QuestionsWeights.Dao.QuestionsWeights;
+import com.sid.Fort.QuestionsWeights.Entity.QuestionsWeights;
 import com.sid.Fort.QuestionsWeights.Service.QuestionsWeightsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

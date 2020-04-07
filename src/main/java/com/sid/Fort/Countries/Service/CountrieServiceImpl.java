@@ -1,6 +1,6 @@
 package com.sid.Fort.Countries.Service;
 
-import com.sid.Fort.Countries.Dao.Countrie;
+import com.sid.Fort.Countries.Entity.Countrie;
 import com.sid.Fort.Countries.Dao.CountrieRepository;
 import com.sid.Fort.config.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

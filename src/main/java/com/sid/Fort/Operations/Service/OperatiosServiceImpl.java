@@ -1,6 +1,6 @@
 package com.sid.Fort.Operations.Service;
 
-import com.sid.Fort.Operations.Dao.Operations;
+import com.sid.Fort.Operations.Entity.Operations;
 import com.sid.Fort.Operations.Dao.OperationsRepository;
 import com.sid.Fort.config.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

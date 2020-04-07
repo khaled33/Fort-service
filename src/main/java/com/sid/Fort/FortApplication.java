@@ -1,13 +1,8 @@
 package com.sid.Fort;
 
-import com.sid.Fort.Countries.Dao.Countrie;
-import com.sid.Fort.UserDetails.Dao.AppUser;
-import com.sid.Fort.UserDetails.Dao.Role;
 import com.sid.Fort.UserDetails.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;

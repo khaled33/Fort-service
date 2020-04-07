@@ -1,6 +1,6 @@
 package com.sid.Fort.CountriesDetails.Service;
 
-import com.sid.Fort.CountriesDetails.Dao.CountrieDetails;
+import com.sid.Fort.CountriesDetails.Entity.CountrieDetails;
 import com.sid.Fort.CountriesDetails.Dao.CountrieDetailsRepository;
 import com.sid.Fort.Operations.Dao.OperationsRepository;
 import com.sid.Fort.config.error.NotFoundException;

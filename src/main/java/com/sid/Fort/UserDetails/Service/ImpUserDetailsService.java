@@ -1,6 +1,6 @@
 package com.sid.Fort.UserDetails.Service;
 
-import com.sid.Fort.UserDetails.Dao.AppUser;
+import com.sid.Fort.UserDetails.Entity.AppUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

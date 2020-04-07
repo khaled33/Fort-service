@@ -1,0 +1,14 @@
+package com.sid.Fort.QuestionsResponsesScenariosEntryProducts.Dao;
+
+import com.sid.Fort.QuestionsResponsesScenariosEntryProducts.Entity.QuestionsResponsesScenariosEntryProducts;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface QuestionsResponsesScenariosEntryProductsRepository extends JpaRepository<QuestionsResponsesScenariosEntryProducts,Long> {
+//    public List<QuestionsResponsesScenariosEntryProducts> getAllBySe
+public List<QuestionsResponsesScenariosEntryProducts> findAllQuestionsResponsesScenariosEntryProductsByScenariosId(Long id);
+public List<QuestionsResponsesScenariosEntryProducts> findAllQuestionsResponsesScenariosEntryProductsByScenariosIdAndProductsId(Long id_senario,Long id_product);
+public QuestionsResponsesScenariosEntryProducts findByQuestionsEntryProductsIdAndScenariosIdAndProductsId(Long id_question,Long id_senario,Long id_product);
+
+}

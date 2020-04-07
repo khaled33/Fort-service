@@ -1,30 +1,26 @@
 package com.sid.Fort.Operations.Service;
 
-import com.sid.Fort.Countries.Dao.Countrie;
+import com.sid.Fort.Countries.Entity.Countrie;
 import com.sid.Fort.Countries.Dao.CountrieRepository;
-import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectors;
+import com.sid.Fort.DnfbpsSectors.Entity.DnfbpsSectors;
 import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectorsRepository;
-import com.sid.Fort.Operations.Dao.Operations;
+import com.sid.Fort.Operations.Entity.Operations;
 import com.sid.Fort.Operations.Dao.OperationsRepository;
-import com.sid.Fort.Questions.Dao.Questions;
-import com.sid.Fort.Questions.Service.QuestionsServiceImpl;
-import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenarios;
-import com.sid.Fort.QuestionsResponsesScenarios.Dao.QuestionsResponsesScenariosRepository;
-import com.sid.Fort.QuestionsResponsesScenarios.Service.QuestionsResponsesScenariosServiceImpl;
-import com.sid.Fort.Scenarios.Dao.Scenarios;
+import com.sid.Fort.QuestionsEntryPage.Entity.Questions;
+import com.sid.Fort.QuestionsEntryPage.Service.QuestionsServiceImpl;
+import com.sid.Fort.QuestionsResponsesScenariosEntryPage.Entity.QuestionsResponsesScenariosEntryPage;
+import com.sid.Fort.QuestionsResponsesScenariosEntryPage.Dao.QuestionsResponsesScenariosRepository;
+import com.sid.Fort.Scenarios.Entity.Scenarios;
 import com.sid.Fort.Scenarios.Dao.ScenariosRepository;
-import com.sid.Fort.UserDetails.Dao.AppUser;
 import com.sid.Fort.UserDetails.Dao.AppUsersRepository;
 import com.sid.Fort.config.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -125,9 +121,8 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
 
         List<Questions> questions = questionsService.getQuestionsBySecteurIdAndTypeINTERMEDIATE(profession_id, Questions.Type.INTERMEDIATE_VARIABLE_TYPE, Scenarios.getId());
         for (Questions qs:questions) {
-            QuestionsResponsesScenarios questionsResponsesScenarios=new QuestionsResponsesScenarios();
+            QuestionsResponsesScenariosEntryPage questionsResponsesScenarios=new QuestionsResponsesScenariosEntryPage();
             questionsResponsesScenarios.setValue(0);
-            questionsResponsesScenarios.setBest_value(7d);
             questionsResponsesScenarios.setScenarios(Scenarios);
             questionsResponsesScenarios.setQuestions(qs);
             questionsResponsesScenariosRepository.save(questionsResponsesScenarios);
@@ -153,6 +148,8 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
             {
                 questionsResponsesScenariosRepository.deleteByScenariosId(scenario.getId());
             }
+       // scenariosRepository.deleteAll(scenarios);
+
         operationsRepository.deleteById(id);
     }
 

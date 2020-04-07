@@ -1,7 +1,6 @@
 package com.sid.Fort.FormQuestionResponses.Service;
 
-import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectors;
-import com.sid.Fort.FormQuestionResponses.Dao.FormQuestionResponses;
+import com.sid.Fort.FormQuestionResponses.Entity.FormQuestionResponses;
 
 import java.util.List;
 

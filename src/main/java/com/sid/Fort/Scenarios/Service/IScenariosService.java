@@ -1,6 +1,6 @@
 package com.sid.Fort.Scenarios.Service;
 
-import com.sid.Fort.Scenarios.Dao.Scenarios;
+import com.sid.Fort.Scenarios.Entity.Scenarios;
 
 import java.util.List;
 

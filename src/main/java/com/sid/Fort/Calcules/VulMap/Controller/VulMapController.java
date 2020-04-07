@@ -14,6 +14,7 @@ public class VulMapController {
 
     @GetMapping("/VulMap/{id_Scenario}")
     public VulMap getVueVulMap(@PathVariable Long id_Scenario) {
+        vulMapService.calcule( id_Scenario);
         return vulMapService.getVueVulMap(id_Scenario);
     }
 }
