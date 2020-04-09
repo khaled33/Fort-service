@@ -17,6 +17,7 @@ public class QuestionsResponsesScenariosEntryProducts implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private Double value;
+    private Double CorrespondingScore;
 
     @Transient
     private Long responses_sel;
@@ -101,5 +102,13 @@ public class QuestionsResponsesScenariosEntryProducts implements Serializable {
 
     public void setProducts(Products products) {
         this.products = products;
+    }
+
+    public Double getCorrespondingScore() {
+        return CorrespondingScore;
+    }
+
+    public void setCorrespondingScore(Double correspondingScore) {
+        CorrespondingScore = correspondingScore;
     }
 }

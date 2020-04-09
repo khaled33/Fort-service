@@ -1,5 +1,6 @@
 package com.sid.Fort;
 
+import com.sid.Fort.CalculesVulnerabilityProdcts.ServiceVulnerabilityProduct;
 import com.sid.Fort.UserDetails.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -17,8 +18,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 //})
 public class FortApplication   {
 
-	@Autowired
-	AccountService accountService;
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(FortApplication.class, args);
 
