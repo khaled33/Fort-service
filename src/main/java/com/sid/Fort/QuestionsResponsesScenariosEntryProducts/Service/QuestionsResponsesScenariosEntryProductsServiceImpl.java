@@ -84,13 +84,12 @@ public class QuestionsResponsesScenariosEntryProductsServiceImpl implements Ques
 
     }
 
-    public double CorrespondingScore(QuestionsResponsesScenariosEntryProducts Qrs) {
+    private double CorrespondingScore(QuestionsResponsesScenariosEntryProducts Qrs) {
 
 
         double CorrespondingScore = 0;
         String textQeustion = Qrs.getQuestionsEntryProducts().getText();
 
-      //  if (textQeustion.equals("Total Value") || textQeustion.equals("Average Transaction Size") || textQeustion.equals("Level of Cash Activity") || textQeustion.equals("Frequency of International Transactions") || textQeustion.equals("Client Base Profile")|| textQeustion.equals("Existence of Investment/Deposit Feature")) {
             if (Qrs.getValue() == 2)
                 CorrespondingScore = 1;
             else if (Qrs.getValue() == 3) {
@@ -122,7 +121,6 @@ public class QuestionsResponsesScenariosEntryProductsServiceImpl implements Ques
                 else
                 CorrespondingScore = 0;
 
-        //}
 
          if (Qrs.getValue() == 3 && textQeustion.equals("Other Vulnerable Factors -Anonymous/Omnibus use of the product/service"))
             CorrespondingScore = 0;
