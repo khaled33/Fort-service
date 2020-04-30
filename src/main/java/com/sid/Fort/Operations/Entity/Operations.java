@@ -14,6 +14,8 @@ import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(indexes = {@Index(columnList="id",name = "IDX_id")})
+
 public class Operations implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +23,7 @@ public class Operations implements Serializable {
     private String designation;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date_debut;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date date_fin;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
@@ -32,9 +33,9 @@ public class Operations implements Serializable {
     @JoinColumn(name = "profession_id")
     private DnfbpsSectors dnfbpsSectors;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "initial_case_id")
-    private Scenarios initial_case;
+//    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//    @JoinColumn(name = "initial_case_id")
+//    private Scenarios initial_case;
 
 //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "last_case_id")
@@ -51,7 +52,6 @@ public class Operations implements Serializable {
         this.id = id;
         this.designation = designation;
         this.date_debut = date_debut;
-        this.date_fin = date_fin;
     }
 
     public Long getId() {
@@ -78,13 +78,6 @@ public class Operations implements Serializable {
         this.date_debut = date_debut;
     }
 
-    public Date getDate_fin() {
-        return date_fin;
-    }
-
-    public void setDate_fin(Date date_fin) {
-        this.date_fin = date_fin;
-    }
 
     public Countrie getCountrie() {
         return countrie;
@@ -102,13 +95,13 @@ public class Operations implements Serializable {
         this.dnfbpsSectors = dnfbpsSectors;
     }
 
-    public Scenarios getInitial_case() {
-        return initial_case;
-    }
-
-    public void setInitial_case(Scenarios initial_case) {
-        this.initial_case = initial_case;
-    }
+//    public Scenarios getInitial_case() {
+//        return initial_case;
+//    }
+//
+//    public void setInitial_case(Scenarios initial_case) {
+//        this.initial_case = initial_case;
+//    }
 
 //    public Scenarios getLast_case_id() {
 //        return last_case_id;

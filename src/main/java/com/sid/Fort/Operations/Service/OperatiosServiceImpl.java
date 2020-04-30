@@ -22,6 +22,11 @@ public class OperatiosServiceImpl implements IOperatiosService {
     }
 
     @Override
+    public String getDesignationOpirationById(Long id) {
+        return null;
+    }
+
+    @Override
     public List<Operations> getAllOperations() {
         return operationsRepository.findAll();
     }

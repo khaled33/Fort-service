@@ -66,7 +66,7 @@ public class VulMapService {
                             Prerequisite = true;
 
                         }
-                        if (qs.getText().equals("Efficacité des systèmes de conformité")) {
+                        if (qs.getText().equals("Efficacité des systèmes de conformité")||qs.getText().equals("Efficacité de la fonction de conformité (Organisation)")) {
                             questionsWeights = 1;
                             Prerequisite = false;
                         }

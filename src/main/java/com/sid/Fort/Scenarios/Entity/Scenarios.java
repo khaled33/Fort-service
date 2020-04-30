@@ -10,13 +10,13 @@ import java.util.Date;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@Table(indexes = {@Index(columnList="id",name = "IDX_id"), @Index(columnList="operation_id",name = "IDX_operations")})
 public class Scenarios implements Serializable {
 @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date datedebut;
-    @Temporal(TemporalType.DATE)
-    private Date datefin;
+
     private String designation;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
@@ -41,10 +41,9 @@ public class Scenarios implements Serializable {
     public Scenarios() {
     }
 
-    public Scenarios(Long id, Date datedebut, Date datefin, String designation) {
+    public Scenarios(Long id, Date datedebut,  String designation) {
         this.id = id;
         this.datedebut = datedebut;
-        this.datefin = datefin;
         this.designation = designation;
     }
 
@@ -64,13 +63,7 @@ public class Scenarios implements Serializable {
         this.datedebut = datedebut;
     }
 
-    public Date getDatefin() {
-        return datefin;
-    }
 
-    public void setDatefin(Date datefin) {
-        this.datefin = datefin;
-    }
 
     public String getDesignation() {
         return designation;

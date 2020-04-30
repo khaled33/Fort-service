@@ -55,10 +55,20 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
     }
 
     @Override
+    public String getDesignationOpirationById(Long id) {
+        try {
+            return operationsRepository.getDesignationOpirationById(id);
+        } catch (NoSuchElementException ex) {
+            throw new NotFoundException(String.format("No Record with the id [%s] was found in our database", id));
+        }
+    }
+
+    @Override
     public List<Operations> getAllOperations() {
         return operationsRepository.findAll();
     }
-@Transactional
+
+    @Transactional
     @Override
     public Operations AddOperations(Operations operations,
                                     Long country_id,
@@ -102,8 +112,7 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
         Countrie countrie = countrieRepository.getOne(country_id);
         DnfbpsSectors dnfbpsSectors = dnfbpsSectorsRepository.getOne(profession_id);
 
-        Scenarios initial_case = new Scenarios(null, new Date(), new Date(), "Initial Case");
-        Scenarios Scenarios = new Scenarios(null, new Date(), new Date(), "Initial Case");
+        Scenarios Scenarios = new Scenarios(null, new Date(), "Initial Case");
 
         Set<Scenarios> scenariosSet = new HashSet<>();
 
@@ -120,8 +129,8 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
 
 
         List<Questions> questions = questionsService.getQuestionsBySecteurIdAndTypeINTERMEDIATE(profession_id, Questions.Type.INTERMEDIATE_VARIABLE_TYPE, Scenarios.getId());
-        for (Questions qs:questions) {
-            QuestionsResponsesScenariosEntryPage questionsResponsesScenarios=new QuestionsResponsesScenariosEntryPage();
+        for (Questions qs : questions) {
+            QuestionsResponsesScenariosEntryPage questionsResponsesScenarios = new QuestionsResponsesScenariosEntryPage();
             questionsResponsesScenarios.setValue(0);
             questionsResponsesScenarios.setScenarios(Scenarios);
             questionsResponsesScenarios.setQuestions(qs);
@@ -131,7 +140,7 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
         }
 
 
-        return  operationsRepository.save(operations);
+        return operationsRepository.save(operations);
     }
 
     @Override
@@ -143,12 +152,11 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
     @Override
     @Transactional
     public void DeleteOperations(Long id) {
-        List<Scenarios> scenarios= scenariosRepository.findScenariosByOperationsId(id);
-        for (Scenarios scenario:scenarios)
-            {
-                questionsResponsesScenariosRepository.deleteByScenariosId(scenario.getId());
-            }
-       // scenariosRepository.deleteAll(scenarios);
+        List<Scenarios> scenarios = scenariosRepository.findScenariosByOperationsId(id);
+        for (Scenarios scenario : scenarios) {
+            questionsResponsesScenariosRepository.deleteByScenariosId(scenario.getId());
+        }
+        // scenariosRepository.deleteAll(scenarios);
 
         operationsRepository.deleteById(id);
     }

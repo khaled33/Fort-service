@@ -11,12 +11,12 @@ import java.io.Serializable;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity(name = "QuestionsResponsesScenariosEntryPage")
-
+@Table(indexes = {@Index(columnList="id",name = "IDX_id"), @Index(columnList="scenario_id",name = "IDX_scenarios")})
 public class QuestionsResponsesScenariosEntryPage implements Serializable {
-    private Double value;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Double value;
 
     @Transient
     private Long responses_sel;
@@ -27,7 +27,7 @@ public class QuestionsResponsesScenariosEntryPage implements Serializable {
     @javax.persistence.OrderBy(value = "indx desc ")
     private Questions questions;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     @JoinColumn(name ="response_id" )
     private Responses responses;
 

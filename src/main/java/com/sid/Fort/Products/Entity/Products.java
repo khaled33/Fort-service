@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
+@Table(indexes = {@Index(columnList="id",name = "IDX_id")})
 public class Products implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

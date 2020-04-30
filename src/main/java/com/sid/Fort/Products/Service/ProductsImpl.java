@@ -1,11 +1,14 @@
 package com.sid.Fort.Products.Service;
 
+import com.sid.Fort.AnalyseOperation.ChatVulProduct.Dao.ChatVulProductRepository;
 import com.sid.Fort.DnfbpsSectors.Dao.DnfbpsSectorsRepository;
 import com.sid.Fort.Products.Entity.Products;
 import com.sid.Fort.Products.Dao.ProductsRepository;
+import com.sid.Fort.QuestionsResponsesScenariosEntryProducts.Dao.QuestionsResponsesScenariosEntryProductsRepository;
 import com.sid.Fort.config.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -14,6 +17,10 @@ import java.util.NoSuchElementException;
 public class ProductsImpl implements IProducts {
     @Autowired
     private ProductsRepository productsRepository;
+      @Autowired
+      QuestionsResponsesScenariosEntryProductsRepository questionsResponsesScenariosEntryProductsRepository;
+      @Autowired
+      ChatVulProductRepository chatVulProductRepository;
       @Autowired
     private DnfbpsSectorsRepository sectorsRepository;
 
@@ -61,7 +68,20 @@ public class ProductsImpl implements IProducts {
     }
 
     @Override
-    public void DeleteProducts(Long id) {
+    @Transactional
+    public void DeleteProducts(Long id,Long id_operation,Long id_Scenario) {
+
+
+            chatVulProductRepository.deleteByProductsId(id);
+
+
+        questionsResponsesScenariosEntryProductsRepository.deleteByProductsId(id);
+
         productsRepository.deleteById(id);
+    }
+
+    @Override
+    public void DeleteProducts(Long id) {
+
     }
 }

@@ -5,6 +5,7 @@ import com.sid.Fort.Responses.Entity.Responses;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
@@ -17,7 +18,7 @@ public class ResponsesGroups implements Serializable {
     @javax.persistence.OrderBy(value = "value desc ")
     @OneToMany(mappedBy = "responsesGroups", fetch = FetchType.LAZY,cascade = CascadeType.ALL
     )
-    private Set<Responses> responses;
+    private List<Responses> responses;
 
     public ResponsesGroups() {
     }
@@ -43,11 +44,11 @@ public class ResponsesGroups implements Serializable {
         this.label = label;
     }
 
-    public Set<Responses> getResponses() {
+    public List<Responses> getResponses() {
         return responses;
     }
 
-    public void setResponses(Set<Responses> responses) {
+    public void setResponses(List<Responses> responses) {
         this.responses = responses;
     }
 }

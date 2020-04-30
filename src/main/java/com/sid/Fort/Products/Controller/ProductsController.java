@@ -52,7 +52,12 @@ public class ProductsController {
 
     @DeleteMapping("/Product/{id}")
     public ResponseEntity<Void> DeleteProducts(@PathVariable Long id) {
-        iProducts.DeleteProducts(id);
+        iProducts.  DeleteProducts(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @DeleteMapping("/Product/{id}/Opiration/{id_operation}/Scenario/{id_Scenario}")
+    public ResponseEntity<Void> DeleteProductsbyOperationAndScenario(@PathVariable Long id,@PathVariable Long id_operation,@PathVariable Long id_Scenario) {
+            iProducts.  DeleteProducts(id,id_operation,id_Scenario);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

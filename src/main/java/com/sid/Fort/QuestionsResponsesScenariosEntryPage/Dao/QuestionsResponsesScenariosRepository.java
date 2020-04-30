@@ -13,10 +13,9 @@ public interface QuestionsResponsesScenariosRepository extends JpaRepository<Que
     public QuestionsResponsesScenariosEntryPage findQuestionsResponsesScenariosByScenariosIdAndQuestionsTypeAndQuestionsIndx(Long id_Scenario, Enum TYpe, Integer Order);
 
     @Query("SELECT qrs.value FROM QuestionsResponsesScenariosEntryPage as qrs INNER JOIN QuestionsEntryPage as q ON qrs.questions = q.id AND q.indx=?1 AND q.type='INTERMEDIATE_VARIABLE_TYPE' AND qrs.scenarios=?2")
-    public Double getQualityofGeneralAMLControls(Integer Order ,Scenarios id_Scenario);
+    public Double getINTERMEDIATE_VARIABLE_TYPE(Integer Order ,Scenarios id_Scenario);
 
     public QuestionsResponsesScenariosEntryPage findByQuestionsIdAndScenariosId(Long id_Question, Long Id_Scenarios);
-    //public QuestionsResponsesScenariosEntryPage findByQuestionsIdAndScenariosIdAndProductsId(Long id_Question,Long Id_Scenarios,Long id_Products);
 
     public QuestionsResponsesScenariosEntryPage findByQuestionsId(Long id_Question);
     public void deleteByScenariosId(Long id_senaros);

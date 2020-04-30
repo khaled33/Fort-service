@@ -12,6 +12,8 @@ import java.io.Serializable;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
+@Table(indexes = {@Index(columnList="id",name = "IDX_id"), @Index(columnList="product_id",name = "IDX_products"), @Index(columnList="scenario_id",name = "IDX_scenarios")})
+
 public class QuestionsResponsesScenariosEntryProducts implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -22,7 +24,7 @@ public class QuestionsResponsesScenariosEntryProducts implements Serializable {
     @Transient
     private Long responses_sel;
 
-    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "question_id")
     @javax.persistence.OrderBy(value = "indx desc ")
     private QuestionsEntryProducts questionsEntryProducts;
@@ -32,7 +34,7 @@ public class QuestionsResponsesScenariosEntryProducts implements Serializable {
     private Responses responses;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "scenario_id")
     private Scenarios scenarios;
 

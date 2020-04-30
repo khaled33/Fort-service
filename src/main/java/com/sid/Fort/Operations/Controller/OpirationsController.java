@@ -12,6 +12,9 @@ import java.util.List;
 
 @RestController
 public class OpirationsController {
+
+
+
     @Autowired
     @Qualifier("v2")
     private IOperatiosService iOperatiosService;
@@ -26,7 +29,11 @@ public class OpirationsController {
     public ResponseEntity<List<Operations>> getAllOperations() {
         return new ResponseEntity<>(iOperatiosService.getAllOperations(), HttpStatus.OK);
     }
+    @GetMapping("/OperationDesignation/{id}")
 
+    public String getDesignationOpirationById(@PathVariable Long id) {
+        return iOperatiosService.getDesignationOpirationById(id);
+    }
     @PostMapping("/Operation")
     public ResponseEntity<Operations> AddOperations(@RequestBody Operations Operations) {
 

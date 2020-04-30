@@ -12,5 +12,6 @@ public interface IProducts  {
     public Products AddProducts(Products Products);
     public Products AddProducts(Products Products,Long id_Sectors);
     public Products UpdateProducts(Products Products,Long id);
+    public void DeleteProducts(Long id,Long id_operation,Long id_Scenario);
     public void DeleteProducts(Long id);
 }

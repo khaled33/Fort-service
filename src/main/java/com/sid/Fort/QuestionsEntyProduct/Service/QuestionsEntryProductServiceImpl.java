@@ -4,12 +4,12 @@ import com.sid.Fort.QuestionsEntyProduct.Dao.QuestionsEntryProductsRepository;
 import com.sid.Fort.QuestionsEntyProduct.Entity.QuestionsEntryProducts;
 import com.sid.Fort.QuestionsResponsesScenariosEntryProducts.Dao.QuestionsResponsesScenariosEntryProductsRepository;
 import com.sid.Fort.QuestionsResponsesScenariosEntryProducts.Entity.QuestionsResponsesScenariosEntryProducts;
+import com.sid.Fort.Responses.Entity.Responses;
 import com.sid.Fort.config.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 @Service
 public class QuestionsEntryProductServiceImpl implements QuestionsEntryProductService {
@@ -51,6 +51,7 @@ public class QuestionsEntryProductServiceImpl implements QuestionsEntryProductSe
 
     @Override
     public List<QuestionsEntryProducts> findQuestionsEntryProductsBySecteur(Long secteur_id,Long senario_id,Long product_id) {
+         List<Responses> responses;
 
 
         List<QuestionsEntryProducts> questionsEntryProducts=questionsEntryProductsRepository.findQuestionsEntryProductsBySecteurId(secteur_id);
@@ -64,8 +65,7 @@ public class QuestionsEntryProductServiceImpl implements QuestionsEntryProductSe
                     qs.setRespSelected(questionsResponsesScenariosEntryProducts.getResponses().getId());
 
                 }catch (NullPointerException ignored) {;}
-
-
+            qs.getResponsesGroups().getResponses().sort((o1, o2) -> Double.compare(o1.getValue(), o2.getValue()));
         }
 
         return questionsEntryProducts;

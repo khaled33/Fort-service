@@ -23,9 +23,9 @@ public class QuestionsResponsesScenariosEntryProductsController {
         return questionsResponsesScenariosEntryProductsService.getAllQuestionsResponsesScenariosEntryProductsByIdScenarios(id);
     }
 
-    @PostMapping("/QuestionsResponsesScenariosEntryProducts/scenario/{scenario_id}/Product/{product_id}")
-    public QuestionsResponsesScenariosEntryProducts AddQuestionsResponsesScenariosEntryProducts(@RequestBody QuestionsResponsesScenariosEntryProducts QuestionsResponsesScenariosEntryProducts, @PathVariable Long scenario_id, @PathVariable Long product_id) {
-        return questionsResponsesScenariosEntryProductsService.AddQuestionsResponsesScenariosEntryProducts(QuestionsResponsesScenariosEntryProducts, scenario_id, product_id);
+    @PostMapping("/QuestionsResponsesScenariosEntryProducts/scenario/{scenario_id}/Product/{product_id}/{sector_type}")
+    public QuestionsResponsesScenariosEntryProducts AddQuestionsResponsesScenariosEntryProducts(@RequestBody QuestionsResponsesScenariosEntryProducts QuestionsResponsesScenariosEntryProducts, @PathVariable Long scenario_id, @PathVariable Long product_id,@PathVariable String sector_type) {
+        return questionsResponsesScenariosEntryProductsService.AddQuestionsResponsesScenariosEntryProducts(QuestionsResponsesScenariosEntryProducts, scenario_id, product_id,sector_type);
     }
 
     public QuestionsResponsesScenariosEntryProducts UpdateQuestionsResponsesScenariosEntryProducts(QuestionsResponsesScenariosEntryProducts QuestionsResponsesScenariosEntryProducts, Long id) {

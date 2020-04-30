@@ -7,6 +7,7 @@ import java.util.List;
 public interface IOperatiosService {
 
     public Operations getOperationsById(Long id);
+    public String getDesignationOpirationById(Long id);
     public List<Operations> getAllOperations();
     public Operations AddOperations(Operations Operations);
 
