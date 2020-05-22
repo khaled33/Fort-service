@@ -10,7 +10,7 @@ import java.util.List;
 public interface ChatVulProductRepository extends JpaRepository<ChatVulProduct, Long> {
     List<ChatVulProduct> getByOperationOrderByProductsIdAsc(Long Id_Operation);
 
-    ChatVulProduct getByProductsIdAndOperation(Long id_Product, Long id_Operation);
+        List<ChatVulProduct> getByProductsIdAndOperation(Long id_Product, Long id_Operation);
 
     @Query(value = "SELECT * FROM `chat_vul_product` WHERE id_scenario=?1 AND operation=?2 AND  products_id =?3 ORDER BY `chat_vul_product`.`products_id` ASC", nativeQuery = true)
     ChatVulProduct getByProductsIdAndOperation(Long id_scenario, Long id_Operation, Long id_Product);

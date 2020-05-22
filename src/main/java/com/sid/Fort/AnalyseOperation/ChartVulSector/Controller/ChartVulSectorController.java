@@ -19,5 +19,9 @@ public class ChartVulSectorController {
     public List<ChartVulSector> getOpenDoorChart(@PathVariable Long id_Operation) {
         return chartVulSectorService.getOpenDoorchart(id_Operation);
     }
+    @GetMapping("/ChartVulSector/Scenarios/{id_Scenarios}/Opiration/{id_Operation}")
+    public Double getOneByScenariosOpenDoorchart(@PathVariable Long id_Scenarios,@PathVariable Long id_Operation) {
+        return chartVulSectorService.getOneByScenariosOpenDoorchart(id_Scenarios,id_Operation);
+    }
 
 }

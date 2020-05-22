@@ -25,9 +25,9 @@ public class OpirationsController {
         return new ResponseEntity<>(rest, HttpStatus.OK);
     }
 
-    @GetMapping("/Operations")
-    public ResponseEntity<List<Operations>> getAllOperations() {
-        return new ResponseEntity<>(iOperatiosService.getAllOperations(), HttpStatus.OK);
+    @GetMapping("/Operations/user/{id_user}")
+    public ResponseEntity<List<Operations>> getAllOperations(@PathVariable Long id_user) {
+        return new ResponseEntity<>(iOperatiosService.getAllOperations(id_user), HttpStatus.OK);
     }
     @GetMapping("/OperationDesignation/{id}")
 
@@ -54,11 +54,12 @@ public class OpirationsController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PostMapping("/Operation/Countrie/{country_id}/DnfbpsSectors/{profession_id}")
+    @PostMapping("/Operation/Countrie/{country_id}/DnfbpsSectors/{profession_id}/user/{id_User}")
     public ResponseEntity<Operations> AddOperations(@RequestBody Operations operations,
                                                     @PathVariable Long country_id,
+                                                    @PathVariable Long  id_User,
                                                     @PathVariable Long profession_id
     ) {
-        return new ResponseEntity<>(iOperatiosService.AddOperations(operations, country_id, profession_id), HttpStatus.CREATED);
+        return new ResponseEntity<>(iOperatiosService.AddOperations(operations, country_id,id_User, profession_id), HttpStatus.CREATED);
     }
 }

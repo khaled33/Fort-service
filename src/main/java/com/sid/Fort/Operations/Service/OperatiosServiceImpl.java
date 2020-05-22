@@ -27,9 +27,10 @@ public class OperatiosServiceImpl implements IOperatiosService {
     }
 
     @Override
-    public List<Operations> getAllOperations() {
-        return operationsRepository.findAll();
+    public List<Operations> getAllOperations(Long id_user) {
+        return null;
     }
+
 
     @Override
     public Operations AddOperations(Operations operations) {
@@ -37,14 +38,11 @@ public class OperatiosServiceImpl implements IOperatiosService {
     }
 
     @Override
-    public Operations AddOperations(Operations operations, Long country_id, Long profession_id) {
+    public Operations AddOperations(Operations operations, Long country_id, Long id_User, Long profession_id) {
         return null;
     }
 
-//    @Override
-//    public Operations AddOperations(Operations operations, Long country_id, Long profession_id, Long initial_case_id, Long last_case_id, Long id_user) {
-//        return null;
-//    }
+
 
     @Override
     public Operations UpdateOperations(Operations operations, Long id) {

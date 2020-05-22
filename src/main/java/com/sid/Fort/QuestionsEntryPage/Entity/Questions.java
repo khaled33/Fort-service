@@ -12,6 +12,14 @@ import java.util.List;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity(name = "QuestionsEntryPage")
 public class Questions implements Serializable {
+    public String getInfoQuestions() {
+        return infoQuestions;
+    }
+
+    public void setInfoQuestions(String infoQuestions) {
+        this.infoQuestions = infoQuestions;
+    }
+
     public enum Type {
          ENTRY_PAGE_TYPE, INTERMEDIATE_VARIABLE_TYPE
     }
@@ -20,6 +28,8 @@ public class Questions implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
+    @Column(length = 100000)
+    private String infoQuestions;
     @Enumerated(EnumType.STRING)
     private Type type;
     @Transient

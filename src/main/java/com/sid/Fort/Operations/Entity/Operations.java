@@ -1,11 +1,13 @@
 package com.sid.Fort.Operations.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sid.Fort.Countries.Entity.Countrie;
 import com.sid.Fort.DnfbpsSectors.Entity.DnfbpsSectors;
 import com.sid.Fort.Scenarios.Entity.Scenarios;
+import com.sid.Fort.UserDetails.Entity.AppUser;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,6 +23,7 @@ public class Operations implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String designation;
+    private String username;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date_debut;
 
@@ -33,6 +36,10 @@ public class Operations implements Serializable {
     @JoinColumn(name = "profession_id")
     private DnfbpsSectors dnfbpsSectors;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "AppUser_id")
+    private AppUser appUser;
+
 //    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 //    @JoinColumn(name = "initial_case_id")
 //    private Scenarios initial_case;
@@ -42,6 +49,7 @@ public class Operations implements Serializable {
 //    private Scenarios last_case_id;
 
     @JsonManagedReference
+    @javax.persistence.OrderBy(value = "id desc ")
     @OneToMany(mappedBy = "operations", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Scenarios> scenarios;
 
@@ -117,5 +125,21 @@ public class Operations implements Serializable {
 
     public void setScenarios(Set<Scenarios> scenarios) {
         this.scenarios = scenarios;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 }

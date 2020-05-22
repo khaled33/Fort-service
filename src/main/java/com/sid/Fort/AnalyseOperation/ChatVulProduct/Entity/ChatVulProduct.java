@@ -20,6 +20,8 @@ public class ChatVulProduct implements Serializable {
 
     private Long operation;
     private Long id_Scenario;
+    @Transient
+    private String NameScenario;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @javax.persistence.OrderBy(value = "id asc ")
     private Products products;
@@ -85,5 +87,27 @@ public class ChatVulProduct implements Serializable {
 
     public void setVulnerabiliteInherente(Double vulnerabiliteInherente) {
         this.vulnerabiliteInherente = vulnerabiliteInherente;
+    }
+
+    public String getNameScenario() {
+        return NameScenario;
+    }
+
+    public void setNameScenario(String nameScenario) {
+        NameScenario = nameScenario;
+    }
+
+    @Override
+    public String toString() {
+        return "ChatVulProduct{" +
+                "id=" + id +
+                ", textProducts='" + textProducts + '\'' +
+                ", vulnerabiliteFinale=" + vulnerabiliteFinale +
+                ", vulnerabiliteInherente=" + vulnerabiliteInherente +
+                ", operation=" + operation +
+                ", id_Scenario=" + id_Scenario +
+                ", NameScenario='" + NameScenario + '\'' +
+                ", products=" + products +
+                '}';
     }
 }

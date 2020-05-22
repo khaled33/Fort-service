@@ -62,4 +62,40 @@ public class ChartVulSectorService {
         }
         return null;
     }
+
+    public Double getOneByScenariosOpenDoorchart(Long id_Scenarios, Long id_Operation) {
+        Scenarios scenarios = scenariosRepository.getOne(id_Scenarios);
+        double Rest;
+        double Largest_Product_Vulnerability = 0;
+
+        List<ChatVulProduct> chatVulProducts = chatVulProductRepository.getByOperationAndProductsIdOrder(id_Operation, scenarios.getId());
+
+        if (chatVulProducts != null) {
+            if (chatVulProducts.size() != 0) {
+                for (ChatVulProduct chatVulProduct : chatVulProducts) {
+                    Rest = (int) Math.ceil(chatVulProducts.size() / 5) + 1;
+
+                    if (Rest < 2) {
+                        Largest_Product_Vulnerability = chatVulProduct.getVulnerabiliteFinale();
+                    } else if (Rest == 2) {
+                        Largest_Product_Vulnerability = (chatVulProducts.get(0).getVulnerabiliteFinale() + chatVulProducts.get(1).getVulnerabiliteFinale()) / 2;
+                    } else if (Rest == 3) {
+                        Largest_Product_Vulnerability = (chatVulProducts.get(0).getVulnerabiliteFinale() + chatVulProducts.get(1).getVulnerabiliteFinale() + chatVulProducts.get(2).getVulnerabiliteFinale()) / 3;
+                    } else if (Rest == 4) {
+                        Largest_Product_Vulnerability = (chatVulProducts.get(0).getVulnerabiliteFinale() + chatVulProducts.get(1).getVulnerabiliteFinale() + chatVulProducts.get(2).getVulnerabiliteFinale() + chatVulProducts.get(3).getVulnerabiliteFinale()) / 4;
+                    }
+                }
+
+
+            }
+
+        }
+
+        if (Largest_Product_Vulnerability != 0)
+            return Largest_Product_Vulnerability;
+        else
+            return null;
+
+
+    }
 }

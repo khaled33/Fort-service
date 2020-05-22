@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ScenariosRepository extends JpaRepository<Scenarios,Long> {
 
-    public List<Scenarios> findScenariosByOperationsId(Long id_opiration);
+     List<Scenarios> findScenariosByOperationsId(Long id_opiration);
 }

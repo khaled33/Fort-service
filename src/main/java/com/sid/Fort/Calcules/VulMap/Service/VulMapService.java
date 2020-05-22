@@ -61,12 +61,12 @@ public class VulMapService {
 
                     }
                     if (qrs.getQuestions().getIndx() == 4) {
-                        if (qs.getText().equals("Qualité de la supervision de la LBC")) {
+                        if (qs.getText().equals("Quality of AML Supervision")) {
                             questionsWeights = 2;
                             Prerequisite = true;
 
                         }
-                        if (qs.getText().equals("Efficacité des systèmes de conformité")||qs.getText().equals("Efficacité de la fonction de conformité (Organisation)")) {
+                        if (qs.getText().equals("Effectiveness of Compliance Systems")||qs.getText().equals("Efficacité de la fonction de conformité (Organisation)")) {
                             questionsWeights = 1;
                             Prerequisite = false;
                         }
@@ -147,8 +147,9 @@ public class VulMapService {
 //
                 data2.put("value", "" + questionsResponsesScenarios1.getValue());
                 MapParant_Niveau_2.setData(data2);
-//
-//
+
+
+
                 for (Questions QsParant_Niveau_3 : QsParant_Niveau_2.getQuestionsWeights().getParent_id()) {
 
                     VulMap MapParant_Niveau_3 = new VulMap();
@@ -156,7 +157,9 @@ public class VulMapService {
 
                     List<VulMap> Children_Niveau_4 = new ArrayList<>();
 //
-                    MapParant_Niveau_3.setId(QsParant_Niveau_2.getId() + "" + QsParant_Niveau_3);
+                    double random = (Math.random()*((100000-1)+1))+1;
+
+                    MapParant_Niveau_3.setId(QsParant_Niveau_2.getId() + "" + QsParant_Niveau_3.getId()+random);
                     QuestionsResponsesScenariosEntryPage questionsResponsesScenarios2 = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(QsParant_Niveau_3.getId(), id_Scenario);
 ////
                     MapParant_Niveau_3.setName(questionsResponsesScenarios2.getValue() + ":" + QsParant_Niveau_3.getText());
@@ -168,9 +171,9 @@ public class VulMapService {
 
                         VulMap MapParant_Niveau_4 = new VulMap();
                         Map<String, String> data4 = new HashMap<>();
-
+                        double random1 = (Math.random()*((100000-1)+1))+1;
 //
-                        MapParant_Niveau_4.setId(QsParant_Niveau_4.getId().toString());
+                        MapParant_Niveau_4.setId(QsParant_Niveau_4.getId().toString()+random1);
                         QuestionsResponsesScenariosEntryPage questionsResponsesScenarios3 = questionsResponsesScenariosRepository.findByQuestionsIdAndScenariosId(QsParant_Niveau_4.getId(), id_Scenario);
 ////
                         MapParant_Niveau_4.setName(questionsResponsesScenarios3.getValue() + ":" + QsParant_Niveau_4.getText());

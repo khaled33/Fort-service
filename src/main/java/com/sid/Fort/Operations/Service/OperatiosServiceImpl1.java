@@ -13,6 +13,7 @@ import com.sid.Fort.QuestionsResponsesScenariosEntryPage.Dao.QuestionsResponsesS
 import com.sid.Fort.Scenarios.Entity.Scenarios;
 import com.sid.Fort.Scenarios.Dao.ScenariosRepository;
 import com.sid.Fort.UserDetails.Dao.AppUsersRepository;
+import com.sid.Fort.UserDetails.Entity.AppUser;
 import com.sid.Fort.config.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,6 +35,8 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
 
     @Autowired
     private DnfbpsSectorsRepository dnfbpsSectorsRepository;
+
+
 
     @Autowired
     private AppUsersRepository usersReposirory;
@@ -64,14 +67,15 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
     }
 
     @Override
-    public List<Operations> getAllOperations() {
-        return operationsRepository.findAll();
+    public List<Operations> getAllOperations(Long id_user) {
+        return operationsRepository.getAllOperationsByAppUserId(id_user);
     }
 
     @Transactional
     @Override
     public Operations AddOperations(Operations operations,
                                     Long country_id,
+                                    Long id_User,
                                     Long profession_id
 
     ) {
@@ -113,18 +117,18 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
         DnfbpsSectors dnfbpsSectors = dnfbpsSectorsRepository.getOne(profession_id);
 
         Scenarios Scenarios = new Scenarios(null, new Date(), "Initial Case");
+        AppUser user = usersReposirory.getOne(id_User);
 
         Set<Scenarios> scenariosSet = new HashSet<>();
 
         Scenarios.setOperations(operations);
         scenariosSet.add(Scenarios);
-        //  initial_case.setOperations(operations);
-//        scenariosRepository.save(initial_case);
+
 
         operations.setCountrie(countrie);
+        operations.setAppUser(user);
         operations.setDnfbpsSectors(dnfbpsSectors);
-//        operations.setInitial_case(initial_case);
-//        operations.setLast_case_id(initial_ase);
+
         operations.setScenarios(scenariosSet);
 
 

@@ -5,6 +5,8 @@ import com.sid.Fort.Operations.Entity.Operations;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface OperationsRepository extends JpaRepository<Operations,Long> {
     @Query("SELECT op.designation FROM Operations as op where id=?1")
     public String getDesignationOpirationById(Long id_Opiration);
@@ -12,5 +14,6 @@ public interface OperationsRepository extends JpaRepository<Operations,Long> {
     @Query("SELECT op.dnfbpsSectors.designation FROM Operations as op where id=?1")
     String getSectorsByOpirationId(Long id_Opiration);
 
+    List<Operations> getAllOperationsByAppUserId(long id_user);
 
 }
