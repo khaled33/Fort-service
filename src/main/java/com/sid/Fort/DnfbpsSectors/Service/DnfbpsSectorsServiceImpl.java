@@ -24,7 +24,7 @@ public class DnfbpsSectorsServiceImpl implements DnfbpsSectorsService {
 
     @Override
     public List<DnfbpsSectors> getAllDnfbpsSectors() {
-        return dnfbpsSectorsRepository.findAll();
+        return dnfbpsSectorsRepository.findAllByOrderByDesignationAsc();
     }
 
     @Override

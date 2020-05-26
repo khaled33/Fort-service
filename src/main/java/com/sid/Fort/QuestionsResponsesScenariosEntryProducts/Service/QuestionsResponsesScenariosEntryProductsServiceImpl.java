@@ -70,10 +70,37 @@ public class QuestionsResponsesScenariosEntryProductsServiceImpl implements Ques
 
 
         switch (sector_type) {
-            case "DNFBPs Vulnerability":
+            case "Notaries and other independent legal professionals":
                 QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
                 break;
-            case "DNFBPs Vulnerability-Product Based":
+            case "Accountants,Auditors,Tax advisers":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Accountants,Auditors,Tax advisers (Product Based)":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Other companies and professions,specific to the country":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Real Estate Agents":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Real Estate Investors":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Dealers in precious metals and dealers in precious stones":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Casinos":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Lawyers":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Trust and company service providers (TCSP)":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Other companies and professions, specific to the country (Product Based)":
                 QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
                 break;
             case "Banking Sector":
