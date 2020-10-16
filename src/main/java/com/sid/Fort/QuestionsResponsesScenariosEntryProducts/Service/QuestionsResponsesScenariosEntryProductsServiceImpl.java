@@ -85,6 +85,12 @@ public class QuestionsResponsesScenariosEntryProductsServiceImpl implements Ques
             case "Real Estate Agents":
                 QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
                 break;
+            case "Other Financial Institutions":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Other Financial Institutions(Product Based)":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
+                break;
             case "Real Estate Investors":
                 QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
                 break;
@@ -104,6 +110,15 @@ public class QuestionsResponsesScenariosEntryProductsServiceImpl implements Ques
                 QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSectorDNFBPsVulnerability(QuestionsResponsesScenariosEntryProducts));
                 break;
             case "Banking Sector":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSector(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Securities Sector":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSector(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Securities Sector (Product Based)":
+                QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSector(QuestionsResponsesScenariosEntryProducts));
+                break;
+            case "Insurance Sector":
                 QuestionsResponsesScenariosEntryProducts.setCorrespondingScore(CorrespondingScoreBankingSector(QuestionsResponsesScenariosEntryProducts));
                 break;
             default:

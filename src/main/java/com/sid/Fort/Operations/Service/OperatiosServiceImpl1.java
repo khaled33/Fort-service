@@ -17,8 +17,10 @@ import com.sid.Fort.UserDetails.Entity.AppUser;
 import com.sid.Fort.config.error.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -47,7 +49,8 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
     @Autowired
     private ScenariosRepository scenariosRepository;
     private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
+    @Autowired
+    private AppUsersRepository appUsersRepository;
     @Override
     public Operations getOperationsById(Long id) {
         try {
@@ -67,8 +70,17 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
     }
 
     @Override
-    public List<Operations> getAllOperations(Long id_user) {
-        return operationsRepository.getAllOperationsByAppUserId(id_user);
+    public List<Operations> getAllOperations(Long id_user,String authorizationHeader) {
+
+
+
+        Object EmailToken = SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        AppUser appUser=appUsersRepository.findByEmail(EmailToken.toString());
+        if (appUser.getId().equals(id_user)){
+            return operationsRepository.getAllOperationsByAppUserId(id_user);
+        }
+    return null;
     }
 
     @Transactional
@@ -80,39 +92,7 @@ public class OperatiosServiceImpl1 implements IOperatiosService {
 
     ) {
 
-//        return countrieRepository.findById(country_id)
-//                .map(rescountry-> {
-//                    operations.setCountrie(rescountry);
-//
-//                    return dnfbpsSectorsRepository.findById(profession_id)
-//                            .map(resdnfbpsSectors-> {
-//                                operations.setDnfbpsSectors(resdnfbpsSectors);
-//
-//                                return scenariosRepository.findById(initial_case_id)
-//                                        .map(resscenarios-> {
-//                                            operations.setInitial_case(resscenarios);
-//
-//                                            return scenariosRepository.findById(last_case_id)
-//                                                    .map(resscenario-> {
-//                                                        operations.setLast_case_id(resscenario);
-//
-////                                                        return usersReposirory.findById(id_user)
-////                                                                .map(resuser-> {
-////                                                                    operations.se(resscenario);
-////
-////                                                                    return operationsRepository.save(operations);
-////                                                                } ).orElseThrow(() ->new RuntimeException(""));
-//
-//                                                        return operationsRepository.save(operations);
-//                                                    } ).orElseThrow(() ->new RuntimeException(""));
-//
-//                                        } ).orElseThrow(() ->new RuntimeException(""));
-//
-//
-//                            } ).orElseThrow(() ->new RuntimeException(""));
-//
-//
-//                } ).orElseThrow(() ->new RuntimeException(""));
+
         Countrie countrie = countrieRepository.getOne(country_id);
         DnfbpsSectors dnfbpsSectors = dnfbpsSectorsRepository.getOne(profession_id);
 

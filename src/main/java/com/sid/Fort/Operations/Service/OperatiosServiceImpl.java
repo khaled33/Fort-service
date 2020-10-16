@@ -27,9 +27,10 @@ public class OperatiosServiceImpl implements IOperatiosService {
     }
 
     @Override
-    public List<Operations> getAllOperations(Long id_user) {
+    public List<Operations> getAllOperations(Long id_user, String authorizationHeader) {
         return null;
     }
+
 
 
     @Override

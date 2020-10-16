@@ -6,10 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.security.core.Authentication;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 @RestController
 public class OpirationsController {
 
@@ -26,8 +31,10 @@ public class OpirationsController {
     }
 
     @GetMapping("/Operations/user/{id_user}")
-    public ResponseEntity<List<Operations>> getAllOperations(@PathVariable Long id_user) {
-        return new ResponseEntity<>(iOperatiosService.getAllOperations(id_user), HttpStatus.OK);
+    public ResponseEntity<List<Operations>> getAllOperations(@PathVariable Long id_user,@RequestHeader(value="Authorization") String authorizationHeader) {
+
+
+        return new ResponseEntity<>(iOperatiosService.getAllOperations(id_user,authorizationHeader), HttpStatus.OK);
     }
     @GetMapping("/OperationDesignation/{id}")
 
@@ -62,4 +69,6 @@ public class OpirationsController {
     ) {
         return new ResponseEntity<>(iOperatiosService.AddOperations(operations, country_id,id_User, profession_id), HttpStatus.CREATED);
     }
+
+
 }

@@ -6,14 +6,30 @@ import com.sid.Fort.CalculesVulnerabilityProdcts.ServiceVulnerabilityProduct;
 import com.sid.Fort.Countries.Dao.CountrieRepository;
 import com.sid.Fort.Countries.Entity.Countrie;
 
+import com.sid.Fort.Form.Entity.DTODoughnutChart;
+import com.sid.Fort.Form.Entity.FormEntity;
+import com.sid.Fort.Form.Service.FormServiceImp;
 import com.sid.Fort.Operations.Dao.OperationsRepository;
+import com.sid.Fort.Prioritization.Service.PrioritizationServiceImpl;
 import com.sid.Fort.UserDetails.Service.AccountService;
+import org.apache.catalina.Context;
+import org.apache.catalina.connector.Connector;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.client.RestClientException;
@@ -21,17 +37,21 @@ import org.springframework.web.client.RestTemplate;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-//@SpringBootApplication(scanBasePackages = {"com.sid"},exclude = {SecurityAutoConfiguration.class})
+
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @EnableSwagger2
 
-public class FortApplication implements CommandLineRunner {
+public class FortApplication extends ServletInitializer implements CommandLineRunner {
 
     @Autowired
-    private ChatVulProductRepository chatVulProductRepository;
+    private MongoTemplate mongoTemplate;
+
+  @Autowired
+    private PrioritizationServiceImpl prioritizationService;
+
 
     public static void main(String[] args) {
         SpringApplication.run(FortApplication.class, args);
@@ -45,28 +65,38 @@ public class FortApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//
-//		final String uri = "https://restcountries.eu/rest/v2/all";
-//try {
-//
-//
-//	RestTemplate restTemplate = new RestTemplate();
-//	cont result[] = restTemplate.getForObject(uri, cont[].class);
-//
-////
-//	for (cont r:result ) {
-//		Countrie countrie=new Countrie();
-//		countrie.setCountry_code(r.getAlpha2Code());
-//		countrie.setCountry_name(r.getName());
-//		countrie.setFlag(r.getFlag());
-//		countrieRepository.save(countrie);
-//	}
-//
-//
-//} catch (RestClientException e) {
-//	e.printStackTrace();
-//}
+//        System.out.println(prioritizationService.PrioritizationCalcule(16L));
 
     }
 
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(FortApplication.class);
+    }
+
+//    @Bean
+//    public ServletWebServerFactory servletContainer() {
+//        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
+//            @Override
+//            protected void postProcessContext(Context context) {
+//                SecurityConstraint securityConstraint = new SecurityConstraint();
+//                securityConstraint.setUserConstraint("CONFIDENTIAL");
+//                SecurityCollection collection = new SecurityCollection();
+//                collection.addPattern("/*");
+//                securityConstraint.addCollection(collection);
+//                context.addConstraint(securityConstraint);
+//            }
+//        };
+//        tomcat.addAdditionalTomcatConnectors(redirectConnector());
+//        return tomcat;
+//    }
+//
+//    private Connector redirectConnector() {
+//        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+//        connector.setScheme("http");
+//        connector.setPort(8087);
+//        connector.setSecure(false);
+//        connector.setRedirectPort(8443);
+//        return connector;
+//    }
 }

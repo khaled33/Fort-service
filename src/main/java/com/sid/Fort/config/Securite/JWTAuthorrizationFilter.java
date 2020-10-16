@@ -1,6 +1,7 @@
 package com.sid.Fort.config.Securite;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -76,7 +77,6 @@ public class JWTAuthorrizationFilter extends OncePerRequestFilter {
         httpServletResponse.setHeader("Access-Control-Allow-Credentials","true");
 
         if(httpServletRequest.getMethod().equals("OPTIONS")) {
-            System.out.println("Pre-flight");
 
             httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
             httpServletResponse.setHeader("Access-Control-Allow-Methods", "*");
@@ -112,9 +112,8 @@ public class JWTAuthorrizationFilter extends OncePerRequestFilter {
                         new UsernamePasswordAuthenticationToken(username, null, authorities);
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
                 filterChain.doFilter(httpServletRequest, httpServletResponse);
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
+            } catch(ExpiredJwtException e) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);            }
         }
 
 

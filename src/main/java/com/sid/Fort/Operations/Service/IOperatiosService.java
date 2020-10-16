@@ -8,7 +8,7 @@ public interface IOperatiosService {
 
     public Operations getOperationsById(Long id);
     public String getDesignationOpirationById(Long id);
-    public List<Operations> getAllOperations(Long id_user);
+    public List<Operations> getAllOperations(Long id_user,String authorizationHeader);
     public Operations AddOperations(Operations Operations);
 
     Operations AddOperations(Operations operations,
