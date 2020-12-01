@@ -52,7 +52,6 @@ public class JWTAauthentficationFilter extends UsernamePasswordAuthenticationFil
                     .claim("roles",SpringUser.getAuthorities())
                     .compact();
             response.addHeader(ConstantSecurity.HEADER_STRING,JWT);
-        System.out.println("**********5555*********");
         System.out.println(response.getHeader(ConstantSecurity.HEADER_STRING));
 
     }

@@ -45,10 +45,10 @@ public interface StringsPrioritization {
     static List<String> getQeustion1(){
         List<String> qs=new ArrayList<>();
         qs.add(Comprehensiveness_of_AML_Legal_Framework);
-        qs.add(Availability_and_Enforcement_of_Criminal_Sanctions);
-         qs.add(Availability_and_Effectiveness_of_Entry_Controls);
         qs.add(Effectiveness_of_Supervision_Oversight_Activities);
         qs.add(Availability_and_Enforcement_of_Administrative_Sanctions);
+        qs.add(Availability_and_Enforcement_of_Criminal_Sanctions);
+        qs.add(Availability_and_Effectiveness_of_Entry_Controls);
         qs.add(Integrity_of_Banks_Staff);
         qs.add(AML_Knowledge_of_Banks_Staff);
         qs.add(Effectiveness_of_Compliance_Systems);

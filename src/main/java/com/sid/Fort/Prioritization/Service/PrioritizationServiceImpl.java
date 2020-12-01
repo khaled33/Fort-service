@@ -337,12 +337,17 @@ public class PrioritizationServiceImpl implements PrioritizationService, Strings
 
             Double Impact_on_Quality_of_General_AML_Controls = null;
             System.out.println(ListCaseYear.get(i).getValue_reponse());
-            if (ListCaseYear.get(i).getValue_reponse() < 0.7) {
-                Impact_on_Quality_of_General_AML_Controls = minNumber6 - 0.7;
+            if (ListCaseYear.get(i).getValue_reponse() < 0.6999999999999998) {
+                Impact_on_Quality_of_General_AML_Controls = minNumber6 - 0.6999999999999998;
 
 
-            }  if (ListCaseYear.get(i).getValue_reponse() > 0.7){
-                Impact_on_Quality_of_General_AML_Controls = 1D;
+            } else {
+
+                Impact_on_Quality_of_General_AML_Controls = minNumber6 - 0.6999999999999998;
+
+            }
+            if(Impact_on_Quality_of_General_AML_Controls==0){
+                Impact_on_Quality_of_General_AML_Controls=1D;
             }
 
             prioritizationEntity.setPrioritizatioValues((double) Math.round(Impact_on_Quality_of_General_AML_Controls * 10000) / 10000);
@@ -755,7 +760,8 @@ if(ListCase!=null){
                     .min(Comparator.comparing(Double::valueOf))
                     .get();
 
-
+//            System.out.println(ListCase.get(1).getValue_reponse());
+//            System.out.println(ListCase.get(2).getValue_reponse());
 
             ListCase.add(new Case("Qualité de la supervision de la LBC", minNumber, 99.0));
 //   fin calcule Qualité de la supervision de la LBC
@@ -778,7 +784,7 @@ if(ListCase!=null){
 
 //            System.out.println(ListCase.get(3).getValue_reponse());
 //            System.out.println(ListCase.get(4).getValue_reponse());
-//            System.out.println(minNumber);
+//            System.out.println(minNumber2);
 
 
             ListCase.add(new Case("Engagement et leadership des directions des banques", minNumber2, minNumber2));
@@ -799,7 +805,6 @@ if(ListCase!=null){
              minNumber3 = Stream.of(Conformite_du_personnel_des_banques, ListCase.get(5).getPrerequisites(), ListCase.get(6).getPrerequisites(), ListCase.get(7).getPrerequisites()+1)
                     .min(Comparator.comparing(Double::valueOf))
                     .get();
-
             ListCase.add(new Case("Conformité du personnel des banques", minNumber3, minNumber3));
 //   fin calcule Conformité du personnel des banques
 //
@@ -853,7 +858,7 @@ if(ListCase!=null){
                         .get();
                 ListCase.add(new Case("Qualité des opérations des banques", minNumber5, 99D));
             }
-
+//            System.out.println(minNumber5);
 
             //  fin  Qualité des opérations des banques
 
@@ -872,23 +877,27 @@ if(ListCase!=null){
 
 
             Double Impact_on_Quality_of_General_AML_Controls;
-            if (ListCaseYear.get(0).getValue_reponse() < 0.7) {
-                Impact_on_Quality_of_General_AML_Controls = minNumber6 - 0.7;
+            if (ListCaseYear.get(i).getValue_reponse() <= 0.6999999999999998) {
+                Impact_on_Quality_of_General_AML_Controls = minNumber6 - 0.6999999999999998;
 
 
             } else {
-                Impact_on_Quality_of_General_AML_Controls = 1D;
+
+                Impact_on_Quality_of_General_AML_Controls = minNumber6 - 0.6999999999999998;
+
             }
-            prioritizationEntity.setPrioritizatioValues((double) Math.round(Impact_on_Quality_of_General_AML_Controls * 10000) / 10000);
+if(Impact_on_Quality_of_General_AML_Controls==0){
+    Impact_on_Quality_of_General_AML_Controls=1D;
+}
+            prioritizationEntity.setPrioritizatioValues(Impact_on_Quality_of_General_AML_Controls) ;
             prioritizationEntity.setQuestion(Question);
             ListprioritizationEntities.add(prioritizationEntity);
         }
-
         ListprioritizationEntities.sort((o1, o2) -> Double.compare(o1.getPrioritizatioValues(), o2.getPrioritizatioValues()));
         for (int i = 0; i < ListprioritizationEntities.size(); i++) {
             ListprioritizationEntities.get(i).setRank(i + 1);
             ListprioritizationEntities.get(i).setScenarios(scenarios);
-//            System.out.println(ListprioritizationEntities.get(i).toString());
+            System.out.println(ListprioritizationEntities.get(i).toString());
 
         }
         return prioritizationRepository.saveAll(ListprioritizationEntities);

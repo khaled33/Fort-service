@@ -42,7 +42,8 @@ public  class QuestionsEntryProducts implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     private QuestionsWeights questionsWeights;
 
-
+    @Column(length = 100000)
+    private String infoQuestions;
 
     public QuestionsEntryProducts(String text, Long respSelected, Integer indx, ResponsesGroups responsesGroups, Products products) {
         this.text = text;
@@ -117,6 +118,11 @@ public  class QuestionsEntryProducts implements Serializable {
         this.type = type;
     }
 
+    public String getInfoQuestions() {
+        return infoQuestions;
+    }
 
-
+    public void setInfoQuestions(String infoQuestions) {
+        this.infoQuestions = infoQuestions;
+    }
 }

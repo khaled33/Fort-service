@@ -11,6 +11,7 @@ import com.sid.Fort.Form.Entity.FormEntity;
 import com.sid.Fort.Form.Service.FormServiceImp;
 import com.sid.Fort.Operations.Dao.OperationsRepository;
 import com.sid.Fort.Prioritization.Service.PrioritizationServiceImpl;
+import com.sid.Fort.UploadImage.property.FileStorageProperties;
 import com.sid.Fort.UserDetails.Service.AccountService;
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
@@ -22,10 +23,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -34,6 +37,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
@@ -43,7 +49,9 @@ import java.util.Map;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @EnableSwagger2
-
+@EnableConfigurationProperties({
+        FileStorageProperties.class
+})
 public class FortApplication extends ServletInitializer implements CommandLineRunner {
 
     @Autowired
@@ -73,7 +81,7 @@ public class FortApplication extends ServletInitializer implements CommandLineRu
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(FortApplication.class);
     }
-
+//
 //    @Bean
 //    public ServletWebServerFactory servletContainer() {
 //        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
@@ -98,5 +106,15 @@ public class FortApplication extends ServletInitializer implements CommandLineRu
 //        connector.setSecure(false);
 //        connector.setRedirectPort(8443);
 //        return connector;
+//    }
+
+//    @Configuration
+//    @EnableWebMvc
+//    public class WebConfig implements WebMvcConfigurer {
+//
+//        @Override
+//        public void addCorsMappings(CorsRegistry registry) {
+//            registry.addMapping("/** ** ");
+//        }
 //    }
 }
