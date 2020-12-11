@@ -1,5 +1,6 @@
 package com.sid.Fort.UserDetails.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -17,22 +18,21 @@ public class AppUser implements Serializable {
     private Long id;
     private String firstname;
     private String lastname;
-    private Date created;
-    private Date modified;
-    private Date lastlogin;
-    private Date expiry;
-    private String language;
-    private int timezone;
-    private int timeformat;
-    private int dateformat;
-    private String password;
     @Column(unique = true)
 //    @Email(regexp=".@.\\..*", message = "Email should be valid")
     private String email;
-    @Column(nullable = false, columnDefinition = "TINYINT(1)",precision = 1)
-    private Boolean enable;
-    private String mobilephone;
     private String phone;
+    private String password;
+    private String pays;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss")
+    private Date created;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd@HH:mm:ss")
+    private Date modified;
+
+
+
+    @Column(nullable = false, columnDefinition = "TINYINT(1)",precision = 0)
+    private Boolean enable;
 
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Collection<Role> roles=new ArrayList<>();
@@ -40,22 +40,16 @@ public class AppUser implements Serializable {
     public AppUser() {
     }
 
-    public AppUser(String firstname, String lastname, Date created, Date modified, Date lastlogin, Date expiry, String language, int timezone, int timeformat, int dateformat, String password, String email, Boolean enable, String mobilephone, String phone) {
+    public AppUser(String firstname, String lastname, String email, String phone, String password, Date created, Date modified, Boolean enable,  Collection<Role> roles) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
         this.created = created;
         this.modified = modified;
-        this.lastlogin = lastlogin;
-        this.expiry = expiry;
-        this.language = language;
-        this.timezone = timezone;
-        this.timeformat = timeformat;
-        this.dateformat = dateformat;
-        this.password = password;
-        this.email = email;
         this.enable = enable;
-        this.mobilephone = mobilephone;
-        this.phone = phone;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -98,53 +92,6 @@ public class AppUser implements Serializable {
         this.modified = modified;
     }
 
-    public Date getLastlogin() {
-        return lastlogin;
-    }
-
-    public void setLastlogin(Date lastlogin) {
-        this.lastlogin = lastlogin;
-    }
-
-    public Date getExpiry() {
-        return expiry;
-    }
-
-    public void setExpiry(Date expiry) {
-        this.expiry = expiry;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public int getTimezone() {
-        return timezone;
-    }
-
-    public void setTimezone(int timezone) {
-        this.timezone = timezone;
-    }
-
-    public int getTimeformat() {
-        return timeformat;
-    }
-
-    public void setTimeformat(int timeformat) {
-        this.timeformat = timeformat;
-    }
-
-    public int getDateformat() {
-        return dateformat;
-    }
-
-    public void setDateformat(int dateformat) {
-        this.dateformat = dateformat;
-    }
     @JsonIgnore
     public String getPassword() {
         return password;
@@ -170,13 +117,6 @@ public class AppUser implements Serializable {
         this.enable = enable;
     }
 
-    public String getMobilephone() {
-        return mobilephone;
-    }
-
-    public void setMobilephone(String mobilephone) {
-        this.mobilephone = mobilephone;
-    }
 
     public String getPhone() {
         return phone;
@@ -192,5 +132,29 @@ public class AppUser implements Serializable {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", created=" + created +
+                ", modified=" + modified +
+                ", enable=" + enable +
+                ", roles=" + roles +
+                '}';
+    }
+
+    public String getPays() {
+        return pays;
+    }
+
+    public void setPays(String pays) {
+        this.pays = pays;
     }
 }

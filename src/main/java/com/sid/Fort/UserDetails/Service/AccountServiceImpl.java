@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 
 public class AccountServiceImpl implements AccountService {
@@ -22,9 +24,32 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AppUser saveUser(AppUser users) {
-        String hashPw=bCryptPasswordEncoder.encode(users.getPassword());
+         String hashPw=bCryptPasswordEncoder.encode(users.getPassword());
         users.setPassword(hashPw);
+        users.setCreated(new Date());
         return appUsersRepository.save(users);
+    }
+
+    @Override
+    public AppUser UpdateUser(AppUser users,Long idUser) {
+        AppUser appUser=appUsersRepository.getOne(idUser);
+        users.setId(idUser);
+        users.setRoles(appUser.getRoles());
+        users.setPassword(appUser.getPassword());
+        users.setModified(new Date());
+
+        return appUsersRepository.save(users);
+    }
+
+    @Override
+    public AppUser UpdatePssword(AppUser users, Long idUser) {
+        AppUser appUser=appUsersRepository.getOne(idUser);
+
+        String hashPw=bCryptPasswordEncoder.encode(users.getPassword());
+        appUser.setModified(new Date());
+
+        appUser.setPassword(hashPw);
+           return appUsersRepository.save(appUser);
     }
 
     @Override
