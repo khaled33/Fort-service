@@ -20,8 +20,8 @@ public class AccountUserController {
     @PostMapping("/Register")
     public ResponseEntity<AppUser> Register(@RequestBody AppUser appUser) {
 
-        List<Role> roleDefault= Collections.singletonList(new Role("Anonyme", null));
-        appUser.setRoles(roleDefault);
+//        List<Role> roleDefault= Collections.singletonList(new Role("Anonyme", null));
+//        appUser.setRoles(roleDefault);
                  return new ResponseEntity<>(accountService.saveUser(appUser), HttpStatus.CREATED);
 
     }

@@ -5,10 +5,14 @@ import com.sid.Fort.UserDetails.Dao.AppUsersRepository;
 import com.sid.Fort.UserDetails.Entity.Role;
 import com.sid.Fort.UserDetails.Dao.RolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.Date;
+import java.util.*;
+
+import static com.sid.Fort.config.URL_Image.URL_image.*;
 
 @Service
 
@@ -27,6 +31,7 @@ public class AccountServiceImpl implements AccountService {
          String hashPw=bCryptPasswordEncoder.encode(users.getPassword());
         users.setPassword(hashPw);
         users.setCreated(new Date());
+        RestTemplate(users.getEmail());
         return appUsersRepository.save(users);
     }
 
@@ -68,4 +73,46 @@ public class AccountServiceImpl implements AccountService {
     public AppUser findUserByEmail(String email) {
         return appUsersRepository.findByEmail(email);
     }
+
+
+    private boolean RestTemplate(String Email) {
+        // request url
+        List<String> to = new ArrayList<>();
+        to.add(Email);
+// create an instance of RestTemplate
+        RestTemplate restTemplate = new RestTemplate();
+
+// create headers
+        HttpHeaders headers = new HttpHeaders();
+// set `content-type` header
+        headers.setContentType(MediaType.APPLICATION_JSON);
+// set `accept` header
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
+// request body parameters
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("to", to);
+        map.put("bodyUrl", Url_PAGE_Login_PASSWORD_PROD);
+        map.put("bodyMessage", "Your registration request is being processed  .\n" );
+
+// build the request
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
+
+        System.out.println(entity.toString());
+// send POST request
+        ResponseEntity<String> response = restTemplate.postForEntity(REST_TEMPLATE, entity, String.class);
+
+// check response
+        if (response.getStatusCode() == HttpStatus.OK) {
+            System.out.println("Request Successful");
+            System.out.println(response.getBody());
+            return true;
+        } else {
+            System.out.println("Request Failed");
+            System.out.println(response.getStatusCode());
+            return false;
+        }
+    }
+
 }

@@ -9,6 +9,14 @@ import java.io.Serializable;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity(name = "Sectors")
 public class DnfbpsSectors implements Serializable {
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public enum Type {
         FINANCIAL_SERVICE, SERVICE_NO_FINANCIER;
     }
@@ -18,6 +26,7 @@ public class DnfbpsSectors implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String designation;
+    private String image;
     @Enumerated(EnumType.STRING)
     private Type type;
     private boolean typeProduct;
