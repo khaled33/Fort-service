@@ -74,6 +74,11 @@ public class AccountServiceImpl implements AccountService {
         return appUsersRepository.findByEmail(email);
     }
 
+    @Override
+    public List<AppUser> getAllUser() {
+        return appUsersRepository.findAll();
+    }
+
 
     private boolean RestTemplate(String Email) {
         // request url

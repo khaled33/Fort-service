@@ -35,19 +35,15 @@ public class AccountUserController {
     @GetMapping("/getUserByEmail/{email}")
     public ResponseEntity<AppUser> Login(@PathVariable String email) {
 
-        return new ResponseEntity<>(accountService.findUserByEmail(email), HttpStatus.CREATED);
+        return new ResponseEntity<>(accountService.findUserByEmail(email), HttpStatus.OK);
 
     }
     @PutMapping("/UpdatePassword/{idUser}")
     public ResponseEntity<AppUser> UpdatePssword(@RequestBody AppUser users, @PathVariable Long idUser) {
         return new ResponseEntity<>(accountService.UpdatePssword(users,idUser), HttpStatus.CREATED);
     }
-//
-//    @PostMapping("/Register")
-//    public ResponseEntity<Void> addRoleToUser(@RequestBody AppUser appUser) {
-//
-//        return new ResponseEntity<>(accountService.addRoleToUser(appUser), HttpStatus.CREATED);
-//
-//    }
-
+    @GetMapping("/Users")
+    public  ResponseEntity<List<AppUser>> getAllUser() {
+        return new ResponseEntity<>(accountService.getAllUser(),HttpStatus.OK);
+    }
 }
