@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface FormRepository extends MongoRepository <FormEntity,String> {
 //    List<FormEntity> findByReponseEquals
-    int countByTypeForm(String typeForm);
+    int countByTypeFormAndIdUser(String typeForm,String id);
 }

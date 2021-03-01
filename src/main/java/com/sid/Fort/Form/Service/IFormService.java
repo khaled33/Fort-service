@@ -10,14 +10,14 @@ import java.util.Map;
 public interface IFormService {
 
     FormEntity addForm(FormEntity form);
-    List<FormEntity> getUserInfoByTypeForm(String TypeForm);
-    Map<String, String>  getAllInfoUserByTypeForm(String TypeForm,String email);
-    int NbResponse (String typeForm);
-    List<DTODoughnutChart> getDataDoughnutChart(String TypeForm,String question);
-    List<String> getAllQuestionbyTypeForm(String TypeForm);
-    Map<String,String> getRankStaffChart(String TypeForm);
+    List<FormEntity> getUserInfoByTypeForm(String TypeForm,String id_UserAdmin);
+    Map<String, String>  getAllInfoUserByTypeForm(String TypeForm,String email,String id_UserAdmin);
+    int NbResponse (String typeForm,String id_UserAdmin);
+    List<DTODoughnutChart> getDataDoughnutChart(String TypeForm,String question,String id_UserAdmin);
+    List<String> getAllQuestionbyTypeForm(String TypeForm,String id_UserAdmin);
+    Map<String,String> getRankStaffChart(String TypeForm,String id_UserAdmin);
 
-    Map<String, String> getTotalAnnualTurnoverChart(String TypeForm);
+    Map<String, String> getTotalAnnualTurnoverChart(String TypeForm,String id_UserAdmin);
 
-    Map<String, String> getListProductsOffereChart(String TypeForm);
+    Map<String, String> getListProductsOffereChart(String TypeForm,String id_UserAdmin);
 }

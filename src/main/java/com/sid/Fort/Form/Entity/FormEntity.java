@@ -13,6 +13,7 @@ public class FormEntity implements Serializable {
     private String id;
     private Map<String, String> Reponse;
     private String typeForm;
+    private String idUser;
 
     public FormEntity() {
     }
@@ -39,6 +40,14 @@ public class FormEntity implements Serializable {
 
     public void setReponse(Map<String, String> reponse) {
         Reponse = reponse;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     @Override
