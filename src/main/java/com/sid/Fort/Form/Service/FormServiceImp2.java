@@ -19,7 +19,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-@Qualifier("FormServiceImpV2")
 
 public class FormServiceImp2 implements IFormService {
     @Autowired
