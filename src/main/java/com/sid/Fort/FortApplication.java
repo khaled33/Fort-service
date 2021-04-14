@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableConfigurationProperties({
         FileStorageProperties.class
 })
+@EnableDiscoveryClient
 public class FortApplication extends ServletInitializer implements CommandLineRunner {
 
     @Autowired
@@ -86,4 +88,5 @@ public class FortApplication extends ServletInitializer implements CommandLineRu
 //            registry.addMapping("/** ** ");
 //        }
 //    }
+
 }

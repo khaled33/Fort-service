@@ -1,5 +1,6 @@
-FROM  openjdk:8-jre-alpine
-ARG JAR_FILE=target/Fort1.jar
+FROM openjdk:8-jdk-alpine
+EXPOSE 8761
+ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
-EXPOSE 8086
+VOLUME /tmp
 ENTRYPOINT ["java","-jar","/app.jar"]

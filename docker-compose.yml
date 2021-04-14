@@ -1,0 +1,139 @@
+version: '3.3'
+
+services:
+  #service 1: definition of mysql database
+  db:
+    image: mysql:latest
+    container_name: mysql-db2
+    environment:
+      - MYSQL_ROOT_PASSWORD=mukit
+      - MYSQL_USER=user
+    ports:
+      - "3306:3306"
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+
+  #service 2: definition of phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: my-php-myadmin
+    ports:
+      - "8082:80"
+    restart: always
+
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mukit
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    hostname: mongo
+    restart: always
+    depends_on:
+      - phpmyadmin
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo:/data/db/
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mukit
+
+  #service 3: definition of your spring-boot app
+  fortservice:
+    image: fort-service
+    container_name: fort-service-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8088:8088"
+    restart: always
+
+    depends_on:
+      - db
+      - eurikaservice
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db2:3306/forte?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mukit
+
+      SPRING_DATA_MONGODB_HOST: mongo
+      SPRING_DATA_MONGODB_PORT: 27017
+      SPRING_DATA_MONGODB_USERNAME: root
+      SPRING_DATA_MONGODB_PASSWORD: mukit
+      SPRING_DATA_MONGODB_DATABASE: FormFort
+
+  sendemailservice:
+    image: sendemail-service
+    container_name: sendemail-service-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    restart: always
+    depends_on:
+      - db
+      - eurikaservice
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db2:3306/forte?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mukit
+
+
+
+  eurikaservice:
+    image: eureka:latest
+    container_name: eurika-service-app
+    ports:
+      - "8761:8761"
+
+  zuulproxyservice:
+    image: zuulproxy:latest
+    container_name: zuulproxy-service-app
+    ports:
+      - "8089:8089"
+    depends_on:
+      - eurikaservice
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    hostname: prometheus
+    depends_on:
+      - zuulproxyservice
+
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    hostname: grafana
+    volumes:
+      - grafana:/var/lib/grafana
+
+  fort-frontend-app:
+    image: fort-frontend
+    container_name: fort-frontend-app
+    depends_on:
+      - grafana
+    ports:
+      - "8085:80"
+
+
+
+volumes:
+  db:
+  mongo:
+  grafana:
